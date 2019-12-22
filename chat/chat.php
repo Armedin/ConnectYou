@@ -18,10 +18,10 @@
 	<meta itemprop="description" content="This is the description.">
 
 
-  <link rel="stylesheet" href="dist/css/main.css">
-  <link rel="icon" href="dist/img/icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="../dist/css/main.css">
+  <link rel="icon" href="../dist/img/icon.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
-  <link href="dist/fontawesome/releases/v5.11.2/css/all.css" rel="stylesheet">
+  <link href="../dist/fontawesome/releases/v5.11.2/css/all.css" rel="stylesheet">
 
   <!-- FONTS
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -45,14 +45,14 @@
   <div class="page_header">
     <div class="inner_wrapper">
       <a href="#" class="header_logo">
-        <img src="dist/img/icon.png">
+        <img src="../dist/img/icon.png">
         <span>ConnectYou</span>
       </a>
       <ul class="header_links">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./fun-connect.html">Games</a></li>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../fun-connect.html">Games</a></li>
         <li><a href="#">Chat</a></li>
-        <li><a href="./our-team.html">Our Team</a></li>
+        <li><a href="../our-team.html">Our Team</a></li>
       </ul>
     </div>
   </div>
@@ -279,8 +279,8 @@
 
 
 
-<script src="dist/js/jquery.min.js"></script>
-<script src="dist/js/main.js"></script>
+<script src="../dist/js/jquery.min.js"></script>
+<script src="../dist/js/main.js"></script>
 <script>
 
   function sendText(){
@@ -294,15 +294,16 @@
     $("#message-input").val('');
   }
 
-  $(".send-message").on("click",function(){
-    sendText();
-  });
-  $("#message-input").on("keydown", function(e){
-    if(e.keyCode == 13 && !e.shiftKey){ //enter
-      e.preventDefault();
-      sendText();
-    }
-  });
+  // $(".send-message").on("click",function(){
+  //   sendText();
+  // });
+
+  // $("#message-input").on("keydown", function(e){
+  //   if(e.keyCode == 13 && !e.shiftKey){ //enter
+  //     e.preventDefault();
+  //     sendText();
+  //   }
+  // });
 
   $("#search-chats").on("keyup", function(){
     var value = $(this).val().toLowerCase();
@@ -311,6 +312,58 @@
     });
   });
 
+</script>
+
+<script language="javascript" type="text/javascript">
+	var wsUri = "ws://localhost:8080/server.php";
+	websocket = new WebSocket(wsUri);
+
+	websocket.onopen = function(ev) { // connection is open
+	}
+	// Message received from server
+	websocket.onmessage = function(ev) {
+		var response 		= JSON.parse(ev.data); //PHP sends Json data
+    console.log(response);
+		var res_type 		= response.type; //message type
+		var user_message 	= response.message; //message text
+		var user_name 		= response.name; //user name
+		var user_color 		= response.color; //color
+		switch(res_type){
+			case 'usermsg':
+				break;
+			case 'system':
+				break;
+		}
+
+	};
+
+	websocket.onerror	= function(ev){};
+	websocket.onclose 	= function(ev){};
+
+  $("#message-input").on("keydown", function(e){
+    if(e.keyCode == 13 && !e.shiftKey){ //enter
+      console.log("nai");
+      e.preventDefault();
+      send_message();
+    }
+  });
+
+	//Send message
+	function send_message(){
+		var message_input = $('#message-input'); //user message text
+
+		if(message_input.val() == ""){ //emtpy message?
+			alert("Enter Some message Please!");
+			return;
+		}
+		//prepare json data
+		var msg = {
+			message: message_input.val()
+		};
+		//convert and send data to server
+		websocket.send(JSON.stringify(msg));
+		message_input.val(''); //reset message input
+	}
 </script>
 </body>
 

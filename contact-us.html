@@ -37,7 +37,7 @@
 		 type="text/css" media="all" />
   -->
 
-  <title>ConnectYou</title>
+  <title>Contact Us | ConnectYou</title>
 
 </head>
 
@@ -86,80 +86,52 @@
   		</div>
   </div>
 
-  <!-- Welcome Section -->
-  <section class="welcome-section">
-    <div class="container_inner">
-      <div class="row-col align-flex-center">
-        <div class="col-sm-12 col-md-7 col-lg-6">
-          <div class="info">
-            <h1>Welcome to ConnectYou!</h1>
-            <p>Meet and chat to students who are at your university and share your interests.</p>
-            <button class="connect_me-btn">ConnectMe</button>
-          </div>
+  <div class="contact_us_page">
+    <div class="contact_us_header">
+      <div class="title">Need help with something?</div>
+      <div class="desc">Submit your help request below!</div>
+      <div class="bg_image">
+        <img src="dist/img/contact_us_bg.jpg">
+      </div>
+    </div>
+    <div class="contact_us_body">
+      <div class="contact_card">
+        <div class="card_head">
+          <div class="title">Send us your enquiries</div>
         </div>
-        <div class="col-sm-12 col-md-5 col-lg-6">
-          <div class="welcome-image">
-            <img src="dist/img/landing_1.png">
-          </div>
+        <div class="card_body">
+          <form name="contact-us" id="contact-us">
+            <div class="row-col">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-input" name="firstname" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone</label>
+                  <input type="text" class="form-input" name="firstname" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email address</label>
+                  <input type="text" class="form-input" name="firstname" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Your message</label>
+                  <textarea type="text" class="form-input" name="firstname"></textarea>
+                  <label class="form-under-label">We'll never share your email with anyone else.</label>
+                </div>
+              </div>
+              <div class="col-lg-3"></div>
+            </div>
+          </form>
+        </div>
+        <div class="card_footer">
+          <button class="submit-enquiry">Submit</button>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Features Section -->
-  <div class="features-section">
-      <div class="inner_wrapper">
-        <div class="features_header_section">
-          <h2>Main Features</h2>
-        </div>
-        <div class="features_body_section">
-          <div class="row-col">
-            <ul class="features_list">
-              <li class="menu_item col-md-4 col-xs-6">
-                <a class="menu_desc_item">
-                  <span class="menu_desc_item_image_with_title pink_color">
-                    <span class="menu_img">
-                      <i class="fad fa-game-console-handheld"></i>
-                    </span>
-                    <span class="menu_title">Play Games</span>
-                  </span>
-                  <span class="menu_desc_item_description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </span>
-                </a>
-              </li>
-              <li class="menu_item col-md-4 col-xs-6">
-                <a class="menu_desc_item">
-                  <span class="menu_desc_item_image_with_title blue_color">
-                    <span class="menu_img">
-                      <i class="fas fa-smile"></i>
-                    </span>
-                    <span class="menu_title">Make Friends</span>
-                  </span>
-                  <span class="menu_desc_item_description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </span>
-                </a>
-              </li>
-              <li class="menu_item col-md-4 col-xs-6">
-                <a class="menu_desc_item">
-                  <span class="menu_desc_item_image_with_title green_color">
-                    <span class="menu_img">
-                      <i class="fad fa-comments-alt"></i>
-                    </span>
-                    <span class="menu_title">Chat with others</span>
-                  </span>
-                  <span class="menu_desc_item_description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  </div>
 
   <!-- Footer -->
   <footer class="main-footer">

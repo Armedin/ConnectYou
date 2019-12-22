@@ -1,0 +1,30 @@
+{
+  "university": [
+    {
+      "id": "0001",
+      "name": "University of Bath",
+      "logo" : "university_of_bath.png"
+    },
+    {
+      "id": "0002",
+      "name": "University of Cambridge",
+      "logo" : "university_of_cambridge.png"
+    },
+    {
+      "id": "0003",
+      "name": "University of Oxford",
+      "logo" : "university_of_oxford.png"
+    },
+    {
+      "id": "0004",
+      "name": "Imperial College London",
+      "logo" : "imperial_college_london.png"
+    },
+    {
+      "id": "0005",
+      "name": "University College London",
+      "logo" : "university_college_london.png"
+    }
+
+  ]
+}
