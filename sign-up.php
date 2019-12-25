@@ -1,4 +1,10 @@
-<!-- DOCTYPE html is the real devil. better not include! -->
+<?php
+include_once('include/init_functions.php');
+if(is_user_logged_in()){
+  header('Location: index.html');
+}
+
+?>
 
 <html>
 

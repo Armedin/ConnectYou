@@ -1,0 +1,288 @@
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta property="og:url" content="http://www.connectyou.com"/>
+	<meta property="og:type" content="non_profit"/>
+	<meta property="og:title" content="ConnectYou"/>
+	<meta property="og:description" content="This is the description">
+
+	<meta name="twitter:site" content="@connectyou">
+	<meta name="twitter:title" content="ConnectYou">
+	<meta name="twitter:description" content="This is the description">
+
+	<meta itemprop="name" content="ConnectYou">
+	<meta itemprop="description" content="This is the description.">
+  <meta name="description" content="Meet and chat to students who are at your university and share your interests.">
+  <meta name="keywords" content="connect, university, interests, games, chat, make friends, ">
+
+  <link rel="icon" href="../dist/img/icon.png" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
+  <link href="../dist/fontawesome/releases/v5.11.2/css/all.css" rel="stylesheet">
+
+  <title>Hangman | ConnectYou</title>
+  <style>
+    *{
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    body.game-page{
+      min-height:100%;
+      background-color:#232222;
+      color:#fefefe;
+      font-family:'Verdana';
+      margin:0;
+    }
+    #main-game{
+      width:100%;
+      padding:60px 0;
+    }
+    .game-title{
+      text-align:center;
+      font-size:32px;
+    }
+    .main_container{
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      -webkit-justify-content:center;
+      justify-content:center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      margin-top:80px;
+    }
+    .hangman_figure_container{
+      height:350px;
+      width:350px;
+      position:relative;
+    }
+    .hangman_figure_container>img{
+      height:100%;
+      position:absolute;
+      left:0;
+    }
+    .hangman_answers_container{
+      width:60%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-justify-content:center;
+      justify-content:center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+    .message_output{
+      background: #fefefe;
+      color: #232222;
+      display: inline-block;
+      padding: 4px 10px;
+    }
+    .answer_container{
+      margin-top:40px;
+      text-align:center;
+    }
+    .answer_box{
+      letter-spacing:10px;
+      font-size:46px;
+    }
+    .answer_hint{
+      margin-top:15px;
+    }
+    .hangman_letters{
+      margin-top:20px;
+    }
+    .hangman_letters>ul{
+      margin: 0 auto;
+      width: 75%;
+      margin-top: 25px;
+      padding: 0;
+      text-align:center;
+    }
+    .hangman_letters>ul>li{
+      background-color: #fbf9f9;
+      border-radius: 3px;
+      -webkit-border-radius:3px;
+      text-align:center;
+      color: #222;
+      cursor: pointer;
+      display: inline-block;
+      margin: 4px;
+      width: 46px;
+      height: 36px;
+      line-height:36px;
+      transition: all .15s ease;
+      -webkit-transition: all .15s ease;
+    }
+    .hangman_letters>ul>li:not(.picked):hover{
+      background-color:#f7de31;
+    }
+    .hangman_letters>ul>li.picked{
+      background: #423F40;
+      color: #212121;
+      cursor: default;
+    }
+    @media screen and (max-width: 915px){
+      .main_container{
+        -webkit-box-orient: vertical;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+      }
+      .hangman_answers_container{
+        margin-top:56px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body class="game-page">
+
+  <noscript>You need to enable JavaScript to run this game.</noscript>
+  <div id="main-game">
+    <div class="game-title">Play Hangman</div>
+    <div class="main_container">
+      <div class="hangman_figure_container">
+        <img src="../dist/img/games/hangman/0.png">
+      </div>
+      <div class="hangman_answers_container">
+        <div class="message_output">The Game is on. Let's play!</div>
+        <div class="answer_container">
+          <div class="answer_box"></div>
+          <div class="answer_hint">A very famous chinese company.</div>
+        </div>
+        <div class="hangman_letters">
+          <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+            <li>D</li>
+            <li>E</li>
+            <li>F</li>
+            <li>G</li>
+            <li>H</li>
+            <li>I</li>
+            <li>J</li>
+            <li>K</li>
+            <li>L</li>
+            <li>M</li>
+            <li>N</li>
+            <li>O</li>
+            <li>P</li>
+            <li>Q</li>
+            <li>R</li>
+            <li>S</li>
+            <li>T</li>
+            <li>U</li>
+            <li>V</li>
+            <li>W</li>
+            <li>X</li>
+            <li>Y</li>
+            <li>Z</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+<script src="../dist/js/jquery.min.js"></script>
+<script>
+  var wordList = this.wordList = [
+		"alibaba"
+	]
+
+  var word = wordList[Math.floor(Math.random() * wordList.length)];
+  var gameOver = false;
+  var guessedLetters = [];
+  var errors = 0;
+  var maxTries = 6;
+  var visibleLetters = [];
+  var hangmanImages = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png'];
+
+  for (var i = 0;i<word.length;i++) {
+		visibleLetters[i] = false;
+	}
+
+  function checkGuess(letter){
+    guessedLetters.push(letter);
+
+    var exists = false;
+    for(var i=0;i<word.length;i++){
+      if(word.charAt(i) === letter) {
+        exists = true;
+        visibleLetters[i] = true;
+      }
+    }
+
+    $("ul>li:contains(" +letter.toUpperCase()+ ")").addClass("picked");
+
+    if(!exists){
+      errors++;
+      $(".hangman_figure_container").append('<img src="../dist/img/games/hangman/'+hangmanImages[errors-1]+'">');
+    }
+
+    //player loses
+    if(errors>=maxTries){
+      gameOver = true;
+      $(".message_output").text("You LOSE! The word was "+word.toUpperCase());
+
+    }
+
+    //player wins
+    if(!visibleLetters.includes(false)){
+      gameOver = true;
+      $(".message_output").text("Congrats! You WIN!");
+    }
+  }
+
+  update();
+
+  $(document).on("keydown", function(e) {
+    if(!gameOver){
+      if(!guessedLetters.includes(e.key)){
+        checkGuess(e.key);
+        update();
+      }
+    }
+});
+
+  function update(){
+    var tempString = "";
+    for (var i = 0;i<visibleLetters.length;i++) {
+  		tempString += ((visibleLetters[i] || gameOver)?word.charAt(i).toUpperCase():"_"); //show the word even when the player lost
+  		if (i < (visibleLetters.length - 1))
+        tempString += " ";
+  	}
+
+    $(".answer_box").text(tempString);
+  }
+
+
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+<!-- -->

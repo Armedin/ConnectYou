@@ -296,6 +296,10 @@ $(".form-input").on("keypress", function(e){
     return false;
   }
 });
+$(".single_avatar_box").on("click", function(){
+  $(".single_avatar_box").removeClass("selected");
+  $(this).addClass("selected");
+});
 $(".close-modal").on("click",function(){
   $("#select-avatar").removeClass("open");
 
@@ -313,6 +317,11 @@ $(".choose_avatar").on("click",function(e){
     $("#select-avatar").addClass("open");
   }, 100);
   $("body").addClass("locked_body");
+});
+$(".select_avatar_btn").on("click", function(){
+  var src = $(".single_avatar_box.selected").find("img").attr("src");
+  $(".avatar_selection").attr("src", src);
+  $(".close-modal").trigger("click");
 });
 
 

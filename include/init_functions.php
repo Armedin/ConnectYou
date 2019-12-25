@@ -57,7 +57,7 @@ function is_ajax()
 
 
 
-//Whether the user has to activate his/her account_logout_ophf39v4_btn
+//Whether the user has to activate its account
 function user_activation_required(){
 		return false;
 }
@@ -81,6 +81,8 @@ function max_username_length(){
 function is_user_logged_in(){
 	return isset($_SESSION['user_id']);
 }
+
+
 
 
 
