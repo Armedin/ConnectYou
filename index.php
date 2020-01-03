@@ -55,6 +55,14 @@
         <li><a href="./chat.html">Chat</a></li>
         <li><a href="./our-team.html">Our Team</a></li>
       </ul>
+      <div class="dropdown_list">
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./fun-connect.html">Games</a></li>
+          <li><a href="./chat.html">Chat</a></li>
+          <li><a href="./our-team.html">Our Team</a></li>
+        </ul>
+      </div>
       <a href="javascript:void(0);" class="mobile_nav">
         <i class="fas fa-bars"></i>
       </a>
@@ -111,11 +119,123 @@
 
   <section class="connect_you_info_section">
     <h1 class="title">ConnectYou is a platform which connects like-minded people.</h1>
+    <div class="button_container">
+      <button class="connect_me-btn">ConnectMe</button>
+    </div>
   </section>
 
+  <section class="how_we_connect_section">
+    <div class="inner_wrapper">
+      <h2 class="title"> How can you find people similar to you? </h2>
+      <div class="features_body_section">
+        <div class="row-col">
+        <ul class="features_list">
+          <li class="menu_item col-md-3 col-xs-6">
+            <a class="menu_desc_item">
+              <span class="menu_desc_item_image_with_title pink_color">
+                <span class="menu_img">
+                  <i class="fad fa-dice-d20"></i>
+                </span>
+                <span class="menu_title">ConnectYou</span>
+              </span>
+              <span class="menu_desc_item_description">
+              ConnectYou matches you with those around you with whom you share most of your interests
+              </span>
+            </a>
+          </li>
+          <li class="menu_item col-md-3 col-xs-6">
+            <a class="menu_desc_item">
+              <span class="menu_desc_item_image_with_title blue_color">
+                <span class="menu_img">
+                  <i class="fad fa-comments-alt"></i>
+                </span>
+                <span class="menu_title">OnlineConnect</span>
+              </span>
+              <span class="menu_desc_item_description">
+                OnlineConnect allows you to chat with those who you have been matched to on
+              </span>
+            </a>
+          </li>
+          <li class="menu_item col-md-3 col-xs-6">
+            <a class="menu_desc_item">
+              <span class="menu_desc_item_image_with_title green_color">
+                <span class="menu_img">
+                  <i class="fad fa-game-console-handheld"></i>
+                </span>
+                <span class="menu_title">GamesConnect</span>
+              </span>
+              <span class="menu_desc_item_description">
+                GamesConnect provides another opportunity for finding new friends, which is done through collaborative single-player and multiplayer games
+              </span>
+            </a>
+          </li>
+          <li class="menu_item col-md-3 col-xs-6">
+            <a class="menu_desc_item">
+              <span class="menu_desc_item_image_with_title purple_color">
+                <span class="menu_img">
+                  <i class="fad fa-basketball-ball"></i>
+                </span>
+                <span class="menu_title">ActiveConnect</span>
+              </span>
+              <span class="menu_desc_item_description">
+                ActiveConnect allows to create common activities based on your preferences
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section class="aimed_for_section">
+    <div class="inner_wrapper">
+      <div class="people_img_cont">
+        <img src="dist/img/happy_people.png">
+      </div>
+      <div class="aimed_info">
+        <h3 class="title">Who is this platform for?</h3>
+        <p class="desc">Everyone!!!</p>
+        <div class="list-item">
+          <i class="fad fa-asterisk"></i>
+          <p>If you want to find new like-minded friends</p>
+        </div>
+        <div class="list-item">
+          <i class="fad fa-asterisk"></i>
+          <p>If you want to expand your circle of friends at your University</p>
+        </div>
+        <div class="list-item">
+          <i class="fad fa-asterisk"></i>
+          <p>If you want to spend time with your peers in the environment you enjoy </p>
+        </div>
+        <p class="small_desc">ConnectYou is for You!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="platform_exist_info_section">
+    <div class="container_inner">
+      <h3 class="title">Why does this platform exist?</h3>
+      <p class="desc">Adaptation to University life can be emotionally and physically challenging for students. Loneliness and fear are two prevailing
+        emotions during that period. Establishing social connections with others will benefit students and their psychological well-being.
+        Therefore, ConnectYou is aimed to connect students based on shared interests and hobbies to facilitate decrease in social isolation and loneliness.
+        We know that tet-a-tet communication can feel like pressure, so we created an online platform which accommodates different communication styles and provides opportunities
+        for easy and friendly communication.
+      </p>
+    </div>
+  </section>
+
+  <section class="the_founders">
+    <div class="inner_wrapper">
+      <h3 class="title">Who are the founders?</h3>
+      <p class="desc">A group of three undergraduate and postgraduate students at the University of Bath and Newcastle University have collaborated to bring this project to life. Please read more about the
+        founders and those helping to create ConnectYou platform in ConnectUs section.
+      </p>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <!-- <footer class="main-footer">
+  <footer class="main-footer">
     <div class="container_inner">
       <div class="footer_logo">
         <img src="dist/img/icon.png">
@@ -136,21 +256,13 @@
         </div>
       </div>
     </div>
-  </footer> -->
-
-
-
-
+  </footer>
 
 <script src="dist/js/jquery.min.js"></script>
 <script src="dist/js/main.js"></script>
 </body>
 
 </html>
-
-
-
-
 
 
 <!-- -->

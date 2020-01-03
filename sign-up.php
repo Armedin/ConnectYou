@@ -1,7 +1,7 @@
 <?php
 include_once('include/init_functions.php');
 if(is_user_logged_in()){
-  header('Location: index.html');
+  header('Location: index.php');
 }
 
 ?>

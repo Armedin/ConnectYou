@@ -183,7 +183,7 @@ function isValidEmailAddress( emailAddress ) {
 /////////////////////////////////////////////////////////////////
 
 $(".mobile_nav").first().on("click", function (event) {
-  $(".header_links").first().toggle();
+  $(".dropdown_list").toggleClass("opened");
 });
 
 

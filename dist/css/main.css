@@ -1311,6 +1311,56 @@ body.our_team_page {
 	font-size: 22px;
 	display: none;
 }
+.page_header .dropdown_list{
+	display:none;
+	width:100%;
+	background-color:#fff;
+	text-align:center;
+	z-index:2;
+	position: fixed;
+	left: 0;
+	top: 60px;
+	border-bottom: 1px solid #e8e8e8;
+	-webkit-box-shadow: 0 0 3px 0 #eaeaea;
+	box-shadow: 0 0 3px 0 #eaeaea;
+	opacity: 0;
+  transform-origin: 0 0 0;
+  transition: all 0.45s ease 0s;
+  -webkit-transition: all 0.45s ease 0s;
+  -webkit-transform: scaleY(0);
+  -moz-transform: scaleY(0);
+  transform: scaleY(0);
+}
+.page_header .dropdown_list.opened{
+	-webkit-transform: scaleY(1);
+	-moz-transform: scaleY(1);
+	transform: scaleY(1);
+	opacity: 1;
+}
+.page_header .dropdown_list ul{
+	padding:0;
+	width: 100%;
+	background: #fff;
+	list-style:none;
+	margin:0;
+}
+.page_header .dropdown_list ul li {
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	text-align: center;
+	padding: 16px 0;
+}
+.page_header .dropdown_list ul li a{
+	color: #041c2c;
+	display: block;
+	margin: 0;
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: 400;
+}
 
 /***********************
 	 	WELCOME PAGE
@@ -3469,6 +3519,7 @@ body.our_team_page {
 @media(max-width:720px) {
 	.page_header>.inner_wrapper {
 		padding: 0 25px;
+		position:relative;
 	}
 }
 
@@ -3621,26 +3672,13 @@ body.our_team_page {
 }
 
 @media(max-width:500px) {
-	.page_header ul.header_links {
-		position: fixed;
-		left: 0;
-		top: 60px;
-		flex-direction: column;
-		width: 100%;
-		display: none;
-		background: #fff;
-	}
-	.page_header ul.header_links li {
-		margin-right: 0!important;
-		-webkit-box-flex: 1;
-		-moz-box-flex: 1;
-		-webkit-flex: 1;
-		-ms-flex: 1;
-		flex: 1;
-		text-align: center;
-		padding: 20px 0;
-	}
 	.page_header .mobile_nav {
 		display: block;
+	}
+	.page_header ul.header_links{
+		display:none;
+	}
+	.page_header .dropdown_list{
+		display:block;
 	}
 }
