@@ -1,5 +1,12 @@
-<!-- DOCTYPE html is the real devil. better not include! -->
-
+<?php
+  include_once('include/init_functions.php');
+  if(!is_user_logged_in()){
+    header('Location: login.php');
+  }
+  if(is_user_info_registered()){
+   // header('Location: login.php');
+  }
+?>
 <html>
 
 <head>
@@ -19,8 +26,9 @@
 	<meta itemprop="description" content="This is the description.">
 
 
+  <link rel="stylesheet" href="dist/css/croppie.min.css">
   <link rel="stylesheet" href="dist/css/main.css">
-  <link rel="icon" href="dist/img/icon.png" type="image/x-icon" />
+  <link rel="icon" href="dist/img/logos/logo48.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
   <link href="dist/fontawesome/releases/v5.11.2/css/all.css" rel="stylesheet">
 
@@ -75,7 +83,7 @@
               <div class="label_desc">Select an avatar for your profile</div>
             </div>
           </div>
-          <div class="form_wizard_step" href="#step-4">
+          <!-- <div class="form_wizard_step" href="#step-4">
             <div class="step_icon">
               <i class="fad fa-star"></i>
             </div>
@@ -83,7 +91,7 @@
               <div class="label_title">Complete</div>
               <div class="label_desc">Review and Submit</div>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -94,14 +102,21 @@
             <div class="form-heading">Enter Your Account Details</div>
             <div class="form-group">
               <label class="form-label">First Name</label>
-              <input type="text" class="form-input" name="firstname" placeholder="First Name">
+              <input type="text" class="form-input" id="firstname" name="firstname" placeholder="First Name">
               <label class="form-under-label">Please enter your first name.</label>
             </div>
             <div class="form-group">
               <label class="form-label">Last Name</label>
-              <input type="text" class="form-input" name="lastname" placeholder="Last Name">
+              <input type="text" class="form-input" id="lastname" name="lastname" placeholder="Last Name">
               <label class="form-under-label">Please enter your last name.</label>
             </div>
+            
+            <div class="form-group">
+              <label class="form-label">Age</label>
+              <input type="text" class="form-input" name="age" id="age" placeholder="Your age" autocomplete="off">
+              <label class="form-under-label">Please enter your age.</label>
+            </div>
+              
             <div class="row-col">
               <!-- <div class="col-lg-6">
                 <div class="form-group">
@@ -119,14 +134,14 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-label">University name</label>
-                  <input id="uni" type="text" class="form-input" name="university" placeholder="Ex: University of Bath" autocomplete="off">
+                  <input id="uni" type="text" class="form-input" id="university" name="university" placeholder="Ex: University of Bath" autocomplete="off">
                   <label class="form-under-label">Please select your university.</label>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="form-label">Department</label>
-                  <input type="text" class="form-input" name="department" placeholder="Ex: Computer Science" autocomplete="off">
+                  <input type="text" class="form-input" name="department" id="department" placeholder="Ex: Computer Science" autocomplete="off">
                   <label class="form-under-label">Please speficy your department.</label>
                 </div>
               </div>
@@ -142,19 +157,23 @@
             </div>
           </div>
 
-          <!-- WIZARD STEP 2  -->
+          <!-- WIZARD STEP 3  -->
           <div class="wizard_form_control" id="step-3">
-            <div class="form-heading">Choose a Profile Avatar</div>
+            <div class="form-heading">Upload Profile Picture (Optional) </div>
             <div class="select_profile_avatar">
-              <img class="avatar_selection" src="dist/img/users/avatar_5.png"></img>
+              <img class="avatar_selection" src="dist/img/default.png"></img>
             </div>
             <div class="choose_btn_container">
-              <button class="choose_avatar">Select Avatar</button>
+              <button class="choose_avatar">Upload Picture
+                <input type="file" id="upload_image" name="upload_image" accept="image/x-png,image/jpeg">
+              </button>
+              <button class="upload_pic_button_hidden" data-target="select-profile-picture"></button>
             </div>
           </div>
 
           <div class="form-actions">
             <button class="next_step">Next Step</button>
+            <button class="submit">Submit</button>
           </div>
         </form>
       </div>
@@ -162,104 +181,47 @@
   </div>
 
 
-  <div class="modal-main" id="select-avatar">
-    <div class="modal-container">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4>Select Avatar</h4>
-          <button type="button" aria-label="Close" class="close-modal">
+  <div class="modal" id="select-profile-picture">
+    <div class="modal_container">
+      <div class="modal_content">
+        <div class="modal_header">
+          <h4>Profile Picture</h4>
+          <button type="button" aria-label="Close" class="close_modal">
             <span class="icon_bar"></span>
             <span class="icon_bar"></span>
           </button>
         </div>
-        <div class="modal-body">
-          <p class="avatar_change_text">*You can change your profile avatar on the settings menu anytime.</p>
-          <div class="avatar_select_container">
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_1.png">
+        <div class="modal_body">
+          <p class="avatar_change_text">Crop your profile picture according to your preferences.</p>
+          <div class="crop_image_container">
+            <form>
+              <div id="image_demo" style="width:440px;height:auto;margin-top:30px"></div>
+              <div class="btn_cont">
+                <button class="submit_cropCont_image crop_image">Crop Image</button>
               </div>
-            </div>
-            <div class="single_avatar_box selected">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_2.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_3.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_4.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_5.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_6.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_7.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_8.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_9.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_10.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_11.png">
-              </div>
-            </div>
-            <div class="single_avatar_box">
-              <div class="inner_box">
-                <img src="dist/img/users/avatar_12.png">
-              </div>
-            </div>
+            </form>
           </div>
-          <button class="select_avatar_btn">Select Avatar</button>
         </div>
-        <div class="modal-footer">
-          <button class="close-modal">Close</button>
+        <div class="modal_footer">
+          <button class="close_modal_btn">Close</button>
         </div>
       </div>
     </div>
   </div>
 
+  <?=  '<script>var user_id = '.$_SESSION['user_id'].'</script>';?> <!-- only for user id --> 
+
 <script src="dist/js/jquery.min.js"></script>
 <script src="dist/js/main.js"></script>
+<script src="dist/js/croppie.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="dist/js/tagsinput.js"></script>
 <script>
 
 $("#taginput").taginput({
-  'autocomplete':{
-						source: [
-							'apple',
-							'banana',
-							'orange',
-							'pizza'
-						]
-					}
+  'autocomplete':{},
+  'ajaxUrl': 'include/get-autocomplete-components.php?action=get-interests'
+
 });
 
 $("#uni").autocomplete({
@@ -273,6 +235,7 @@ $("#uni").autocomplete({
         response(data);
       },
       error: function(err){
+        console.log(err.responseText);
       }
     })
   },
@@ -289,46 +252,75 @@ $("#uni").autocomplete({
       .append(item.label)
       .appendTo(ul);
 };
-/* make sure nothing weird happens ... Like avatar button triggering hmmm*/
+
+/* make sure nothing weird happens ... Like avatar button triggering */
 $(".form-input").on("keypress", function(e){
   if(event.which==13){
     e.preventDefault();
     return false;
   }
 });
-$(".single_avatar_box").on("click", function(){
-  $(".single_avatar_box").removeClass("selected");
-  $(this).addClass("selected");
-});
-$(".close-modal").on("click",function(){
-  $("#select-avatar").removeClass("open");
-
-  $("#select-avatar").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
-  function(e){
-    $("#select-avatar").css("display","none");
-    $("body").removeClass("locked_body");
-    $(this).off('webkitTransitionEnd moztransitionend transitionend oTransitionEnd');
-  });
-});
-$(".choose_avatar").on("click",function(e){
-  $("#select-avatar").css("display", "block");
-
-  window.setTimeout( function() {
-    $("#select-avatar").addClass("open");
-  }, 100);
-  $("body").addClass("locked_body");
-});
-$(".select_avatar_btn").on("click", function(){
-  var src = $(".single_avatar_box.selected").find("img").attr("src");
-  $(".avatar_selection").attr("src", src);
-  $(".close-modal").trigger("click");
-});
-
-
-
-
 
 </script>
+
+<script>
+
+  
+
+  var profile_pic_image = ""; // Image data:
+
+  $(document).ready(function(){
+
+    $image_crop = $('#image_demo').croppie({
+      enableExif: true,
+      viewport: {
+        width:200,
+        height:200,
+        type:'square' //square
+      },
+      boundary:{
+        width:300,
+        height:300
+      }
+    });
+
+    $('#upload_image').on('change', function(e){
+    
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        $image_crop.croppie('bind', {
+          url: event.target.result
+        }).then(function(){
+          //console.log('jQuery bind complete');
+
+        });
+    }
+
+    // Check if cancel is clicked
+    if(!($("#upload_image").get(0).files.length == 0)){
+      reader.readAsDataURL(this.files[0]);
+      $('.upload_pic_button_hidden').trigger('click');
+    }
+
+  });
+
+  $(".submit_cropCont_image.crop_image").on("click",function(event){
+    event.preventDefault();
+    $image_crop.croppie('result', {
+      type: 'canvas',
+      size: 'original',
+      format: 'png',
+      quality: 1
+    }).then(function(response){
+      profile_pic_image = response; 
+      $(".avatar_selection").attr("src",response);
+      $(".close_modal").trigger('click');
+    });
+  });
+
+  });
+  </script>
+
 </body>
 
 </html>

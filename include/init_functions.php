@@ -55,7 +55,43 @@ function is_ajax()
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
 
+function getToken($user_id)
+{
+	$user_id = db_escapeString($user_id);
+    $query = db_query("SELECT `token` FROM `members` WHERE `ID` = '$user_id' LIMIT 1");
+    $row = mysqli_fetch_assoc($query);
 
+    return $row['token'];
+}
+
+function is_user_logged_in(){
+	return isset($_SESSION['user_id']);
+}
+
+function is_user_info_registered(){
+    if(is_user_logged_in()){
+        $user_id = $_SESSION['user_id'];
+        $query = db_query("SELECT * FROM `user_info` WHERE `userID` = '$user_id' LIMIT 1");
+        $result = mysqli_num_rows($query);
+        if($result > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+    
+}
+
+
+
+
+
+// For DEMO purpose
+function is_activation_required(){
+    return false;
+}
 
 //Whether the user has to activate its account
 function user_activation_required(){
@@ -78,9 +114,6 @@ function max_username_length(){
 	return 55;
 }
 
-function is_user_logged_in(){
-	return isset($_SESSION['user_id']);
-}
 
 
 

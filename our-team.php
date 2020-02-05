@@ -20,7 +20,7 @@
 
 
   <link rel="stylesheet" href="dist/css/main.css">
-  <link rel="icon" href="dist/img/icon.png" type="image/x-icon" />
+  <link rel="icon" href="dist/img/logos/logo48.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
   <link href="dist/fontawesome/releases/v5.11.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" id="redux-google-fonts-stm_option-css"
@@ -46,28 +46,12 @@
 <body class="our_team_page">
   <!-- Page Header -->
 
-  <div class="page_header">
-    <div class="inner_wrapper">
-      <a href="#" class="header_logo">
-        <img src="dist/img/icon.png">
-        <span>ConnectYou</span>
-      </a>
-      <ul class="header_links">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./fun-connect.html">Games</a></li>
-        <li><a href="./chat.html">Chat</a></li>
-        <li><a href="./our-team.html">Our Team</a></li>
-      </ul>
-      <a href="javascript:void(0);" class="mobile_nav">
-        <i class="fas fa-bars"></i>
-      </a>
-    </div>
-  </div>
+  <?php include_once('include/page_header.php'); ?>
 
 
   <div class="our_team_members_container">
-    <div class="inner_wrapper container_inner">
-      <div class="about-out-team">
+    <div class="inner_wrapper">
+      <div class="about-our-team">
         <h1 class="title">Meet Our Team</h1>
         <p>ConnectYou is a diverse team of passionate people, sharing a common vision on bringing together as many students as possible. Meet our
           team members and discover their specific expertise.
@@ -75,13 +59,18 @@
       </div>
       <div class="row-col">
 
-        <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="col-md-4 col-sm-4 col-xs-6">
           <div class="team_member">
-            <div class="image" style="background-image:url('https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-1/p320x320/53646094_2159031920877012_1688321983013453824_n.jpg?_nc_cat=111&_nc_eui2=AeGXl8OC8Anl3J4kEWjcNf_YRIAbmwzHKkxH_LZ54c7DhqXOlrKGbwUJHxs9tG0n3m5hkyGNP0XRj7Tgo8hBz4wIW9I7ia4WH4FZQnDF8jYSmg&_nc_oc=AQnbiH82jLqeR0Fa7WlzVnP_RfMEiUlX_qROujtX5HBRizXj6jyWaMCPGeMouTq3YPE&_nc_ht=scontent-lht6-1.xx&oh=1d6ff8439e1cda1fddd0774e01c1dff5&oe=5E4A93CF')">
+            <div class="image" style="background-image:url('dist/img/Alice.jpg')">
             </div>
             <div class="info">
               <h3>Alice Zingman</h3>
-              <p>Psychologist</p>
+              <p>Project Manager</p>
+              <div class="member_quotes">
+                <p>My wish is to see a community where social isolation is eliminated and everyone has like-minded people around them. I
+                  believe ConnectYou is a tool which can help build this new friendly and connected society.
+                </p>
+              </div>
               <div class="social_media_cont">
                 <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
                 <a class="social_widget twitter"href="www.twitter.com"><i class="fab fa-twitter"></i></a>
@@ -90,13 +79,17 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="col-md-4 col-sm-4 col-xs-6">
           <div class="team_member">
-            <div class="image" style="background-image:url('https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/11951792_144228015919955_91764441734980983_n.jpg?_nc_cat=108&_nc_eui2=AeEoL35JzScEoe1KiSfF2pWGEJTVMDCe0mFomTHckf0X3LXa0dpqsKmKikf2A578yGC2C5B5ZYTQ7ITP_3YHM3TKc3FfdJzZygzjblE3fvPWhA&_nc_oc=AQloRttWMSjIZv6-oaJiKETMim8-U7e85cD-lXGvALvOKK-hCtgzVJna8v3Q9k3e6_E&_nc_ht=scontent-lht6-1.xx&oh=2c6b1ce050fc5a9a59446643f6684a76&oe=5E5BD11F')">
+            <div class="image" style="background-image:url('dist/img/Dmitrii.jpg')">
             </div>
             <div class="info">
-              <h3>Dmitriv Litvinenko</h3>
-              <p>Business Managment</p>
+              <h3>Dmitrii Litvinenko</h3>
+              <p>Business Developer</p>
+              <div class="member_quotes">
+                <p>For me, ConnectYou is a life beacon as I am willing to contribute to the solution of the social isolation experienced personally.
+                  I strongly believe that together, as a team of all involved players, we will reach our joint goal.</p>
+              </div>
               <div class="social_media_cont">
                 <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
                 <a class="social_widget twitter"href="www.twitter.com"><i class="fab fa-twitter"></i></a>
@@ -105,13 +98,33 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="col-md-4 col-sm-4 col-xs-6">
           <div class="team_member">
-            <div class="image" style="background-image:url('https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/31936523_2026641497594959_5312543553497333760_o.jpg?_nc_cat=101&_nc_eui2=AeGb4iXGAHbUC1LyKz3v3HL_30oLzH8_zxpDCZzvqvkxQItHm5I7knCSZXrJMx9djbEjg3RysA3HSWq0t6Iy3J1ZeL19vR6J1_RAjxLt-LNbyg&_nc_oc=AQmObKEjTF9mgjA6pi5TXnS_DhVFcE1XqT28uvQCsQBPrzEtYr9oxIQVWyJRetPx2rk&_nc_ht=scontent-lht6-1.xx&oh=0a4baedff2e38cd42183365978224516&oe=5E60E560')">
+            <div class="image" style="background-image:url('dist/img/Alesya.jpg')">
+            </div>
+            <div class="info">
+              <h3>Alesya Yakimenko</h3>
+              <p>Marketing Manager</p>
+              <div class="member_quotes">
+                <p>For me, ConnectYou is a way to achieve the goal of establishing interconnectedness of students of different nationalities. In a modern society, we often encounter people’s inability to effectively communicate.
+                  Due to technological progress, people stop perceiving other people on a cognitive level and instead prefer to live in ‘online’ world, closing up and experiencing extreme loneliness. That is the reason why we
+                  created ConnectYou, which not only gives a new online world but also helps people be closer to each other.</p>
+              </div>
+              <div class="social_media_cont">
+                <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                <a class="social_widget twitter"href="www.twitter.com"><i class="fab fa-twitter"></i></a>
+                <a class="social_widget google"href="www.google.com"><i class="fab fa-google"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-6">
+          <div class="team_member">
+            <div class="image" style="background-image:url('dist/img/Armedin.jpg')">
             </div>
             <div class="info">
               <h3>Armedin Kuka</h3>
-              <p>No Life Programmer</p>
+              <p>Lead Programmer</p>
               <div class="social_media_cont">
                 <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
                 <a class="social_widget twitter"href="www.twitter.com"><i class="fab fa-twitter"></i></a>
@@ -120,12 +133,12 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="col-md-4 col-sm-4 col-xs-6">
           <div class="team_member">
-            <div class="image" style="background-image:url('https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/69817944_2376113169147147_6989637529926369280_n.jpg?_nc_cat=107&_nc_eui2=AeG_ZR5gHXgZVbjSoD2gEx_NUJTVzPNjtmMlTRxGwE_t6ncydLUqfy6oGd6foCLpFwi-oTfadtR5sYHPPUETgxLs2BYwru0foyYZDy54fTcR_Q&_nc_oc=AQmzPCkme630_rrKi8K10h6apnrzszqs-l4IC7DnGwHWUi0xXbB9mSGQ9yXbw1wPxr4&_nc_ht=scontent-lht6-1.xx&oh=a631c9d423e550d62d5919bfbed4c191&oe=5E506983')">
+            <div class="image" style="background-image:url('dist/img/Philip.jpg')">
             </div>
             <div class="info">
-              <h3>Daniel Mala</h3>
+              <h3>Philip Bardy</h3>
               <p>Computer Scientist</p>
               <div class="social_media_cont">
                 <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
@@ -135,37 +148,6 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="team_member">
-            <div class="image" style="background-image:url('https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/69593262_3441823322498360_6731518709925412864_o.jpg?_nc_cat=103&_nc_eui2=AeEv67nVOibj43Us-GDm4HmnTHAWR8iRU4ZXcNJb-A5LNOt3syxcSL5-kTitD1h8OzGnQbRNidpmCydVvGFGwgv9lWzv33M8ire_Y0F3I3hCEA&_nc_oc=AQkrRXKYT3iX5KkvyB_45deerWk4J8P6tl00e1gN6tDu1asBqOMCKth9doaTm9BQwrg&_nc_ht=scontent-lht6-1.xx&oh=2c51780355b53d5e7cae96278ac459b3&oe=5E8A6D38')">
-            </div>
-            <div class="info">
-              <h3>Chloe Liu</h3>
-              <p>Computer Scientist</p>
-              <div class="social_media_cont">
-                <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-                <a class="social_widget twitter"href="www.twitter.com"><i class="fab fa-twitter"></i></a>
-                <a class="social_widget google"href="www.google.com"><i class="fab fa-google"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <div class="team_member">
-            <div class="image" style="background-image:url('https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-1/13716109_117261885379507_5031796836026992485_n.jpg?_nc_cat=105&_nc_eui2=AeHDoP2S8-kyyDIuQTH793uMnUz0Y-EpUyPH-ZOnPqvvzrxyMm9QrwKRnrCF7NjgwOAqYZgCSReDu9jGoNAXNAEoHQDuJa5r4viM3shZl9WJGg&_nc_oc=AQnMeIj1oZH-nPhzG3uRpP0FprPljKt2GG4Jzif2WsTfLJH4jth50mjHeT1rFL9k06Y&_nc_ht=scontent-lht6-1.xx&oh=00b675e7789872da071dd7446fc0122c&oe=5E4FE55F')">
-            </div>
-            <div class="info">
-              <h3>Phil Bardy</h3>
-              <p>Computer Scientist</p>
-              <div class="social_media_cont">
-                <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-                <a class="social_widget twitter"href="www.twitter.com"><i class="fab fa-twitter"></i></a>
-                <a class="social_widget google"href="www.google.com"><i class="fab fa-google"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
 
       </div>
     </div>

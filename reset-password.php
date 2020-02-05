@@ -20,7 +20,7 @@
 
 
   <link rel="stylesheet" href="dist/css/main.css">
-  <link rel="icon" href="dist/img/icon.png" type="image/x-icon" />
+  <link rel="icon" href="dist/img/logos/logo48.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
   <link href="dist/fontawesome/releases/v5.11.2/css/all.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <div class="inner_wrapper">
       <div class="register_auth_login">
         <div class="logo">
-          <a href="#"><img src="dist/img/icon.png"></a>
+          <a href="#"><img src="dist/img/logos/logo152.png"></a>
         </div>
         <div class="login_register_box">
           <h1 class="title">Forgotten Password ?</h1>

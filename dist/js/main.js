@@ -153,19 +153,17 @@ function isValidEmailAddress( emailAddress ) {
 
       $(".form_wizard_step").on("click",function(e){
 
-        var currentInputs = $(".wizard_form_control.show").find(".form-input, .taginput");
+        var currentInputs = $(".wizard_form_control.show").find(".form-input, .tag-hiddendata");
         var hasErrors = false;
         $(".form-group").removeClass("has-error");
         for(var i=0;i<currentInputs.length;i++){
-          console.log(currentInputs[i]);
           if(isEmptyInput($(currentInputs[i]))){
             hasErrors = true;
             $(currentInputs[i]).closest(".form-group").addClass("has-error");
           }
         }
 
-        // if(hasErrors){
-          var current = $(this).attr('href');
+        if(!hasErrors){
           e.preventDefault();
           var target = $($(this).attr('href'));
           $(".form_wizard_step").removeClass("active");
@@ -174,16 +172,132 @@ function isValidEmailAddress( emailAddress ) {
           $(".wizard_form_control").removeClass("show");
           target.addClass("show");
           target.find("input:eq(0)").focus();
-        //}
+
+          if($(this).attr('href') == "#step-3"){
+            $(".next_step").css("display", "none");
+            $(".submit").css("display", "block");
+          }
+
+        }
+
+        
 
       });
 
+      $(".next_step").on("click", function(e){
+        var currentInputs = $(".wizard_form_control.show").find(".form-input, .taginput");
+        var hasErrors = false;
+        $(".form-group").removeClass("has-error");
+        for(var i=0;i<currentInputs.length;i++){
+          if(isEmptyInput($(currentInputs[i]))){
+            hasErrors = true;
+            $(currentInputs[i]).closest(".form-group").addClass("has-error");
+          }
+        }
+
+        if(!hasErrors){
+          var nextStepWizard = $(".wizard_navigation_steps .form_wizard_step.active").next();
+          var nextStepForm = $(".wizard_form_control.show").next();
+
+          $(".form_wizard_step").removeClass("active");
+          nextStepWizard.addClass("active");
+          $(".wizard_form_control").removeClass("show");
+          nextStepForm.addClass("show");
+
+        }
+        
+      });
+
+      $(".submit").on("click", function(){
+        event.preventDefault();
+
+      //Create a FormData to append everything
+
+      var form_data = new FormData();
+
+      var firstname = $("#firstname").val();
+      var lastname = $("#lastname").val();
+      var age = $("#age").val();
+      var university = $("#uni").val();
+      var department = $("#department").val();
+      var interests = $(".tag-hiddendata").val();
+
+
+      //Append everything in FormData (also user_id and token from the normal js )
+      form_data.append("user_id", user_id);
+      form_data.append("firstname", firstname);
+      form_data.append("lastname", lastname);
+      form_data.append("age", age);
+      form_data.append("university", university);
+      form_data.append("department", department);
+      form_data.append("interests", interests);
+      form_data.append("userID",user_id);
+      form_data.append("profile_picture", profile_pic_image)
+
+
+      if(firstname.replace(/^\s+|\s+$/g, "").length == 0){
+        Snackbar.showToast({def_text:"Please enter your firstname!"});
+      }else if(lastname.replace(/^\s+|\s+$/g, "").length == 0){
+        Snackbar.showToast({def_text:"Please enter your lastname!"});
+      }else if(age.replace(/^\s+|\s+$/g, "").length == 0){
+        Snackbar.showToast({def_text:"Please specify your age!"});
+      }else if(university.replace(/^\s+|\s+$/g, "").length == 0){
+        Snackbar.showToast({def_text:"Please enter your university!"});
+      }else if(department.replace(/^\s+|\s+$/g, "").length == 0){
+        Snackbar.showToast({def_text:"Please specify your department!"});
+      }else if(interests.replace(/^\s+|\s+$/g, "").length == 0){
+        Snackbar.showToast({def_text:"Please select your interests!"});
+      }
+      else{
+        $.ajax({
+          url : "include/user-information.php?action=insert-info",
+          data: form_data,
+  			  processData: false,
+  			  contentType: false,
+          type : "POST",
+          dataType : "json",
+          success : function(response){
+            if(response.status == 0){
+              Snackbar.showToast({def_text : response.error});
+            }else if(response.status == 1){
+              window.location.href="/index.php";
+            }else{
+              Snackbar.showToast({def_text : "An unknown error has occured !"});
+            }
+          },
+          error : function(xhr, ajaxOptions, thrownError){
+            Snackbar.showToast({def_text : xhr.responseText});
+          }
+        })
+      }
+      });
+
 //////////////////////////////////////////////////////////////////
-/////////////////////// TOGGLE BUTTONS ///////////////////////////
+///////////////////////  BUTTONS ///////////////////////////
 /////////////////////////////////////////////////////////////////
 
 $(".mobile_nav").first().on("click", function (event) {
   $(".dropdown_list").toggleClass("opened");
+});
+
+$("a[data-target], button[data-target]").on("click",function(e){
+  e.preventDefault();
+  var modal = $("#"+$(this).attr("data-target"));
+  modal.css("display", "block");
+  window.setTimeout( function() {
+    modal.addClass("open");
+  }, 100);
+  $("body").removeClass("locked_body");
+});
+$(".close_modal, .close_modal_btn").on("click",function(){
+$(".modal").removeClass("open");
+
+$(".modal").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
+function(e){
+  $(".modal").css("display","none");
+  $("body").removeClass("locked_body");
+  $(this).off('webkitTransitionEnd moztransitionend transitionend oTransitionEnd');
+});
 });
 
 
@@ -198,6 +312,7 @@ $(".mobile_nav").first().on("click", function (event) {
         var email = $("#register-email").val();
         var password = $("#register-password").val();
         var repassword = $("#register-repassword").val();
+        var checkbox = $("#terms-conditions");
 
         if(username.replace(/^\s+|\s+$/g, "").length == 0){
           $("#register-username").addClass("invalid");
@@ -227,6 +342,8 @@ $(".mobile_nav").first().on("click", function (event) {
           $("#register-password").addClass("invalid");
           $("#register-repassword").addClass("invalid");
           Snackbar.showToast({def_text:"Your passwords do not match"});
+        }else if(!checkbox.is(":checked")){
+          Snackbar.showToast({def_text:"You must agree to the terms & conditions !"});
         }else{
           $.ajax({
             type: "POST",
@@ -237,7 +354,7 @@ $(".mobile_nav").first().on("click", function (event) {
               if(response.status == 0){
                 Snackbar.showToast({def_text:response.error});
               }else if(response.status == 1){
-                    //window.location.href = "./profile.php?id="+user_id;
+                window.location.href = "collect-data.php";
               }else{
                 Snackbar.showToast({def_text:'An unknown error has occured.'});
               }
@@ -278,13 +395,13 @@ $(".mobile_nav").first().on("click", function (event) {
                   Snackbar.showToast({def_text:response.error});
                 }else if(response.status == 1){
                   Snackbar.showToast({def_text:"Correct!"});
-                  //window.location.href="email-confirm.php";
+                  window.location.href="/";
                 }else{
                   Snackbar.showToast({def_text:"An unknown error has occured"});
                 }
               },
               error: function(xhr, ajaxOptions, thrownError){
-                Snackbar.showToast({def_text:"An unknown error has occured"});
+                Snackbar.showToast({def_text:xhr.responseText});
               }
             });
 

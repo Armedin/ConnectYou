@@ -24,7 +24,43 @@
     var tagHiddenData = tagInputContainer.find(".tag-hiddendata");
 
     if(options.autocomplete != null && jQuery.ui.autocomplete !== undefined){
-      tagInput.autocomplete(options.autocomplete);
+      if(options.ajaxUrl!=null){
+
+        tagInput.autocomplete({
+          source: function(request, response) {
+            $.ajax({
+              url: options.ajaxUrl,
+              method: 'POST',
+              data: {term: request.term},
+              dataType: 'json',
+              success: function(data){
+                response(data);
+              },
+              error: function(err){
+                console.log(err.responseText);
+              }
+            })
+          },
+          minLength: 2,
+          position: {of: '.tags-input'},
+          select: function(event, ui){
+            _createTag(tagInput, ui.item.value);
+            ui.item.value=""; //don't put text on input :c
+          },
+          change: function(event, ui){
+            //$(this).val((ui.item ? ui.item.value : "")); //allow only the selected ones!
+          }
+        }).data("ui-autocomplete")._renderItem = function(ul, item){
+            return $('<li class="ui-autocomplete-row"></li>')
+              .data("item.autocomplete", item)
+              .append(item.label)
+              .appendTo(ul);
+        };
+
+      }else{
+        tagInput.autocomplete(options.autocomplete);
+      }
+
       //return false;
     }
     // Handle all key event listeners on tagInput
@@ -32,21 +68,7 @@
       var input = $(this);
       if(e.keyCode == KeyCodes.ENTER && $.trim(input.val()) !== ''){
         e.preventDefault();
-        var tag = $.trim(input.val());
-        var tagIndex = $.inArray(tag, tagHiddenData.val().split(options.tagSeperator)); //check if the tag has been entered
-
-        if(tagIndex === -1){
-          input.before('<span class="tag tag-primary" tag-data="'+ tag + '">' + tag + ' <span class="remove-tag"><i class="fal fa-times"></i></span></span>');
-          if($.trim(tagHiddenData.val()) === '') //if there's no previous data we don't want tag seperator to be infront
-            tagHiddenData.val(tag);
-          else
-            tagHiddenData.val(tagHiddenData.val() + options.tagSeperator + tag);
-          input.val('');
-        }else{ //flash the existing tag
-          var existingTag = tagInputContainer.find('span.tag[tag-data="' + tag + '"]');
-          existingTag.fadeOut(150).fadeIn(200);
-        }
-
+        //_createTag(input, input.val());
       }
       if(e.keyCode == KeyCodes.BACKSPACE && $.trim(input.val()) === ''){
         input.prev("span.tag").remove();
@@ -64,6 +86,22 @@
       tag.remove();
     });
 
+    var _createTag = function(input, value){
+      var tag = $.trim(value);
+      var tagIndex = $.inArray(tag, tagHiddenData.val().split(options.tagSeperator)); //check if the tag has been entered
+
+      if(tagIndex === -1){
+        input.before('<span class="tag tag-primary" tag-data="'+ tag + '">' + tag + ' <span class="remove-tag"><i class="fal fa-times"></i></span></span>');
+        if($.trim(tagHiddenData.val()) === '') //if there's no previous data we don't want tag seperator to be infront
+          tagHiddenData.val(tag);
+        else
+          tagHiddenData.val(tagHiddenData.val() + options.tagSeperator + tag);
+        input.val('');
+      }else{ //flash the existing tag
+        var existingTag = tagInputContainer.find('span.tag[tag-data="' + tag + '"]');
+        existingTag.fadeOut(150).fadeIn(200);
+      }
+    }
 
 
   };
@@ -79,8 +117,9 @@
     }
     return $('<div class="tags-input">'+tagLabels+'<input type="text" class="taginput" placeholder="Add interest">'+
             '<input class="tag-hiddendata" type="hidden" value="'+input.val()+'"></div>');
-
   }
+
+
 
 
 

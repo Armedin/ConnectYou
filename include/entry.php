@@ -58,8 +58,8 @@
 				  $escaped_hash = db_escapeString($user_password_hash);
 
           //Check for duplicate
-          $check_email_query = db_query("SELECT * FROM users WHERE email = '$user_email'");
-          $check_username_query = db_query("SELECT * FROM users WHERE username = '$username'");
+          $check_email_query = db_query("SELECT * FROM members WHERE email = '$user_email'");
+          $check_username_query = db_query("SELECT * FROM members WHERE username = '$username'");
 
 
           if(mysqli_num_rows($check_email_query) == 1){
@@ -71,7 +71,7 @@
           }else{
             // We are good to go !
             $time = time();
-            $register_user = db_query("INSERT INTO users (username, password, email, registration_date)
+            $register_user = db_query("INSERT INTO members (username, password, email, registration_date)
             VALUES ('$username', '$escaped_hash', '$user_email', '$time')");
           }
         }
@@ -104,7 +104,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == "login" && is_ajax()
     if (!mysqli_connect_errno(db_connect())) {
 
       $username = db_escapeString($_POST['username']);
-      $check_username = db_query("SELECT ID, username, password, email FROM users WHERE username = '$username' || email = '$username'");
+      $check_username = db_query("SELECT ID, username, password, email FROM members WHERE username = '$username' || email = '$username'");
 
       if(mysqli_num_rows($check_username) == 1){
 
@@ -114,7 +114,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == "login" && is_ajax()
         if (password_verify($_POST['password'], $row['password'])) {
 
           $token = bin2hex(openssl_random_pseudo_bytes(32));
-          db_query("UPDATE users SET token = '$token' WHERE ID = '$user_id'");
+          db_query("UPDATE members SET token = '$token' WHERE ID = '$user_id'");
           $_SESSION['user_id'] = $user_id;
           $_SESSION['user_token'] = $token;
 

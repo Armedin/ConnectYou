@@ -26,7 +26,7 @@ if(is_user_logged_in()){
 
 
   <link rel="stylesheet" href="dist/css/main.css">
-  <link rel="icon" href="dist/img/icon.png" type="image/x-icon" />
+  <link rel="icon" href="dist/img/logos/logo48.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
   <link href="dist/fontawesome/releases/v5.11.2/css/all.css" rel="stylesheet">
 
@@ -53,7 +53,7 @@ if(is_user_logged_in()){
     <div class="inner_wrapper">
       <div class="register_auth_login">
         <div class="logo">
-          <a href="#"><img src="dist/img/icon.png"></a>
+          <a href="#"><img src="dist/img/logos/logo152.png"></a>
         </div>
         <div class="login_register_box">
           <h1 class="title">Sign Up to ConnectYou</h1>
@@ -82,6 +82,10 @@ if(is_user_logged_in()){
                 <i class="fal fa-key"></i>
               </span>
             </div>
+            <div class="form_group">
+              <input type="checkbox" name="terms_and_cond" id="terms-conditions" class="hidden_checkbox">
+              <label for="terms-conditions" class="checkbox_label">I agree to the <a data-target="terms_condition_modal">Terms & Conditions</a></label>
+            </div>
           </form>
 
 
@@ -96,12 +100,50 @@ if(is_user_logged_in()){
     </div>
   </div>
 
+  <div class="modal" id="terms_condition_modal">
+    <div class="modal_container">
+      <div class="modal_content">
+        <div class="modal_header">
+          <h4>Terms & Conditions</h4>
+          <button type="button" aria-label="Close" class="close_modal">
+            <span class="icon_bar"></span>
+            <span class="icon_bar"></span>
+          </button>
+        </div>
+        <div class="modal_body">
+          <p>
+          Welcome to our website and thank you for your interest to become a part of the social movement of ConnectYou! ConnectYou (“us” or “we”) and our 
+          services are developed available through the mobile-friendly website (the “Website” or the “Site”). Unless it is not specified, all references 
+          to the Service or Services involve the set of services accessible through the ConnectYou Website, as well as any other software or social media 
+          that ConnectYou offers that allows to get the Services. The term “you” indicates the user of the Service. The further Terms of Service are a form 
+          of legal binding contract between you and ConnectYou as with the user of the Services. ConnectYou is owned and operated by ConnectYou Company, 
+          a British Limited Liability Company.
+          <br><br>
+          Please read the following Terms of Service ("Terms") carefully before accessing or using the Service. Each time you access or use the Service, you, 
+          or if you are acting on behalf of a third party or your employer, such third party or employer, agree to be bound by these Terms whether or not you 
+          register with us. If you do not agree to be bound by all of these Terms, you may not access or use the Service. ConnectYou may change this 
+          Agreement at any time by posting an updated Terms of Service on this site. If any amendment to these Terms is unacceptable to you, you shall 
+          cease using this Site. If you continue using the Site, you will be conclusively deemed to have accepted the changes.
+          </p>
+        </div>
+        <div class="modal_footer">
+          <button class="close_modal_btn">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 
 
 <script src="dist/js/jquery.min.js"></script>
 <script src="dist/js/main.js"></script>
+<script>
+  
+
+
+</script>
 </body>
 
 </html>

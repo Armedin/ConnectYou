@@ -21,7 +21,7 @@
   <meta name="keywords" content="connect, university, interests, games, chat, make friends, ">
 
   <link rel="stylesheet" href="dist/css/main.css">
-  <link rel="icon" href="dist/img/icon.png" type="image/x-icon" />
+  <link rel="icon" href="dist/img/logos/logo48.png" type="image/x-icon"/>
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
   <link href="dist/fontawesome/releases/v5.11.2/css/all.css" rel="stylesheet">
 
@@ -43,37 +43,13 @@
 
 <body class="landing_page">
 
-  <div class="page_header">
-    <div class="inner_wrapper">
-      <a href="#" class="header_logo">
-        <img src="dist/img/icon.png">
-        <span>ConnectYou</span>
-      </a>
-      <ul class="header_links">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./fun-connect.html">Games</a></li>
-        <li><a href="./chat.html">Chat</a></li>
-        <li><a href="./our-team.html">Our Team</a></li>
-      </ul>
-      <div class="dropdown_list">
-        <ul>
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./fun-connect.html">Games</a></li>
-          <li><a href="./chat.html">Chat</a></li>
-          <li><a href="./our-team.html">Our Team</a></li>
-        </ul>
-      </div>
-      <a href="javascript:void(0);" class="mobile_nav">
-        <i class="fas fa-bars"></i>
-      </a>
-    </div>
-  </div>
-
+  <?php include_once('include/page_header.php'); ?>
+  
   <!-- Page Sidebar -->
   <div class="page-sidebar">
     <div class="header-logo">
       <a href="/" class="logo-image">
-        <img src="dist/img/icon.png">
+        <img src="dist/img/logos/logo152.png">
         <span>ConnectYou</span>
       </a>
   	</div>
@@ -234,29 +210,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="main-footer">
-    <div class="container_inner">
-      <div class="footer_logo">
-        <img src="dist/img/icon.png">
-        <span>ConnectYou</span>
-      </div>
-      <div class="footer_social_network">
-        <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-        <a class="social_widget twitter"href="www.twitter.com"><i class="fab fa-twitter"></i></a>
-        <a class="social_widget youtube"href="www.youtube.com"><i class="fab fa-youtube"></i></a>
-        <a class="social_widget instagram"href="www.instagram.com"><i class="fab fa-instagram"></i></a>
-        <a class="social_widget skype"href="www.skype.com"><i class="fab fa-skype"></i></a>
-      </div>
-      <div class="copyright">
-        <p class="footer_link">Copyright © 2019 ConnectYou | All Rights Reserved</p>
-        <div>
-          <a href="#" class="footer_link">Privacy Policy</a>
-          <a href="#" class="footer_link">Terms of use</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <?php include_once('include/footer.php');?>
 
 <script src="dist/js/jquery.min.js"></script>
 <script src="dist/js/main.js"></script>
