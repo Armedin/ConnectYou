@@ -868,8 +868,8 @@ function total_member($width, $color = "")
 {
 	$today = strtotime('tomorrow midnight');
 	$yesterday = strtotime('today midnight');
-	$total_member_today = db_query("SELECT `ID` FROM `members` WHERE `guest` = 0 && `admin` = 0 && `registration_date` <= '$today' && `registration_date` >= '$yesterday'");
-	$total_member = db_query("SELECT `ID` FROM `members` WHERE `guest` = 0 && `admin` = 0");
+	$total_member_today = db_query("SELECT `ID` FROM `members` WHERE `registration_date` <= '$today' && `registration_date` >= '$yesterday'");
+	$total_member = db_query("SELECT `ID` FROM `members`");
 	echo "<div class='col ".$width."'>";
 	echo "<div class='card ".$color."'>";
 	echo "<div class='card-content center-align'>";
@@ -884,7 +884,7 @@ function total_member($width, $color = "")
 
 function online_member($width, $color = "")
 {
-	$total_member = db_query("SELECT `ID` FROM `members` WHERE `guest` = 0 && `admin` = 0 && `online` = 1");
+	$total_member = db_query("SELECT `ID` FROM `members` WHERE `online` = 1");
 	echo "<div class='col ".$width."'>";
 	echo "<div class='card ".$color."'>";
 	echo "<div class='card-content center-align'>";
@@ -928,64 +928,59 @@ function online_user($width, $color = "")
 
 function total_guest($width, $color = "")
 {
-	$today = strtotime('tomorrow midnight');
-	$yesterday = strtotime('today midnight');
-	$total_guest_today = db_query("SELECT `ID` FROM `members` WHERE `guest` = 1 && `admin` = 0 && `registration_date` <= '$today' && `registration_date` >= '$yesterday'");
-	$total_guest = db_query("SELECT `ID` FROM `members` WHERE `guest` = 1 && `admin` = 0");
-	echo "<div class='col ".$width."'>";
-	echo "<div class='card ".$color."'>";
-	echo "<div class='card-content center-align'>";
-		echo "<p class='statistic_text_num'>".mysqli_num_rows($total_guest)."</p>";
-		echo "<p class='statistic_text_text'>Total Guests</p>";
-		echo "<div class='divider'></div>";
-		echo "<p class='left-align statistic_text_bottom'>Registered Today: ".mysqli_num_rows($total_guest_today)."</p>";
-	echo "</div>";
-	echo "</div>";
-	echo "</div>";
+	// $today = strtotime('tomorrow midnight');
+	// $yesterday = strtotime('today midnight');
+	// $total_guest_today = db_query("SELECT `ID` FROM `members` WHERE `guest` = 1 && `admin` = 0 && `registration_date` <= '$today' && `registration_date` >= '$yesterday'");
+	// $total_guest = db_query("SELECT `ID` FROM `members` WHERE `guest` = 1 && `admin` = 0");
+	// echo "<div class='col ".$width."'>";
+	// echo "<div class='card ".$color."'>";
+	// echo "<div class='card-content center-align'>";
+	// 	echo "<p class='statistic_text_num'>".mysqli_num_rows($total_guest)."</p>";
+	// 	echo "<p class='statistic_text_text'>Total Guests</p>";
+	// 	echo "<div class='divider'></div>";
+	// 	echo "<p class='left-align statistic_text_bottom'>Registered Today: ".mysqli_num_rows($total_guest_today)."</p>";
+	// echo "</div>";
+	// echo "</div>";
+	// echo "</div>";
+	echo '';
 }
 
 function online_guest($width, $color = "")
 {
-	$total_guest = db_query("SELECT `ID` FROM `members` WHERE `guest` = 1 && `admin` = 0 && `online` = 1");
-	echo "<div class='col ".$width."'>";
-	echo "<div class='card ".$color."'>";
-	echo "<div class='card-content center-align'>";
-		echo "<p class='statistic_text_num'>".mysqli_num_rows($total_guest)."</p>";
-		echo "<p class='statistic_text_text'>Online Guests</p>";
-	echo "</div>";
-	echo "</div>";
-	echo "</div>";
+	// $total_guest = db_query("SELECT `ID` FROM `members` WHERE `guest` = 1 && `admin` = 0 && `online` = 1");
+	// echo "<div class='col ".$width."'>";
+	// echo "<div class='card ".$color."'>";
+	// echo "<div class='card-content center-align'>";
+	// 	echo "<p class='statistic_text_num'>".mysqli_num_rows($total_guest)."</p>";
+	// 	echo "<p class='statistic_text_text'>Online Guests</p>";
+	// echo "</div>";
+	// echo "</div>";
+	// echo "</div>";
+	echo '';
 }
 
 function total_admin($width, $color = "")
 {
-	$today = strtotime('tomorrow midnight');
-	$yesterday = strtotime('today midnight');
-	$total_admin_today = db_query("SELECT `ID` FROM `members` WHERE `guest` = 0 && `admin` = 1 && `registration_date` <= '$today' && `registration_date` >= '$yesterday'");
-	$total_admin = db_query("SELECT `ID` FROM `members` WHERE `guest` = 0 && `admin` = 1");
-	echo "<div class='col ".$width."'>";
-	echo "<div class='card ".$color."'>";
-	echo "<div class='card-content center-align'>";
-		echo "<p class='statistic_text_num'>".mysqli_num_rows($total_admin)."</p>";
-		echo "<p class='statistic_text_text'>Total Admins</p>";
-		echo "<div class='divider'></div>";
-		echo "<p class='left-align statistic_text_bottom'>Registered Today: ".mysqli_num_rows($total_admin_today)."</p>";
-	echo "</div>";
-	echo "</div>";
-	echo "</div>";
+	// $today = strtotime('tomorrow midnight');
+	// $yesterday = strtotime('today midnight');
+	// $total_admin_today = db_query("SELECT `ID` FROM `members` WHERE `guest` = 0 && `admin` = 1 && `registration_date` <= '$today' && `registration_date` >= '$yesterday'");
+	// $total_admin = db_query("SELECT `ID` FROM `members` WHERE `guest` = 0 && `admin` = 1");
+	// echo "<div class='col ".$width."'>";
+	// echo "<div class='card ".$color."'>";
+	// echo "<div class='card-content center-align'>";
+	// 	echo "<p class='statistic_text_num'>".mysqli_num_rows($total_admin)."</p>";
+	// 	echo "<p class='statistic_text_text'>Total Admins</p>";
+	// 	echo "<div class='divider'></div>";
+	// 	echo "<p class='left-align statistic_text_bottom'>Registered Today: ".mysqli_num_rows($total_admin_today)."</p>";
+	// echo "</div>";
+	// echo "</div>";
+	// echo "</div>";
+	echo '';
 }
 
 function online_admin($width, $color = "")
 {
-	$total_admin = db_query("SELECT `ID` FROM `members` WHERE `guest` = 0 && `admin` = 1 && `online` = 1");
-	echo "<div class='col ".$width."'>";
-	echo "<div class='card ".$color."'>";
-	echo "<div class='card-content center-align'>";
-		echo "<p class='statistic_text_num'>".mysqli_num_rows($total_admin)."</p>";
-		echo "<p class='statistic_text_text'>Online Admins</p>";
-	echo "</div>";
-	echo "</div>";
-	echo "</div>";
+	return '';
 }
 
 function websocket_connection($width, $color = "")

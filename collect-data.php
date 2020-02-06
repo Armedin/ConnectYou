@@ -4,7 +4,7 @@
     header('Location: login.php');
   }
   if(is_user_info_registered()){
-   // header('Location: login.php');
+    header('Location: login.php');
   }
 ?>
 <html>
@@ -110,13 +110,13 @@
               <input type="text" class="form-input" id="lastname" name="lastname" placeholder="Last Name">
               <label class="form-under-label">Please enter your last name.</label>
             </div>
-            
+
             <div class="form-group">
               <label class="form-label">Age</label>
               <input type="text" class="form-input" name="age" id="age" placeholder="Your age" autocomplete="off">
               <label class="form-under-label">Please enter your age.</label>
             </div>
-              
+
             <div class="row-col">
               <!-- <div class="col-lg-6">
                 <div class="form-group">
@@ -209,7 +209,7 @@
     </div>
   </div>
 
-  <?=  '<script>var user_id = '.$_SESSION['user_id'].'</script>';?> <!-- only for user id --> 
+  <?=  '<script>var user_id = '.$_SESSION['user_id'].'</script>';?> <!-- only for user id -->
 
 <script src="dist/js/jquery.min.js"></script>
 <script src="dist/js/main.js"></script>
@@ -265,7 +265,7 @@ $(".form-input").on("keypress", function(e){
 
 <script>
 
-  
+
 
   var profile_pic_image = ""; // Image data:
 
@@ -285,7 +285,7 @@ $(".form-input").on("keypress", function(e){
     });
 
     $('#upload_image').on('change', function(e){
-    
+
       var reader = new FileReader();
       reader.onload = function (event) {
         $image_crop.croppie('bind', {
@@ -312,7 +312,7 @@ $(".form-input").on("keypress", function(e){
       format: 'png',
       quality: 1
     }).then(function(response){
-      profile_pic_image = response; 
+      profile_pic_image = response;
       $(".avatar_selection").attr("src",response);
       $(".close_modal").trigger('click');
     });

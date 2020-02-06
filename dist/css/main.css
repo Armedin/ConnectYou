@@ -2583,6 +2583,37 @@ body.our_team_page {
 }
 
 
+.terms_cond_container .sub_title{
+	margin:0;
+	font-size:14px;
+	font-weight:500;
+	color:#48465b;
+	text-align:center;
+}
+.terms_cond_container .list_of_points{
+	margin:13px 0;
+	padding-left:20px;
+	list-style: none;
+}
+.terms_cond_container .list_of_points>li{
+	position: relative;
+    font-size: 13px;
+	padding-left: 20px;
+}
+.terms_cond_container .list_of_points>li:not(:first-child){
+	margin-top:10px;
+}
+.terms_cond_container .list_of_points>li:before{
+	content: '';
+    position: absolute;
+    top: 7px;
+    left: 2px;
+    width: 6px;
+    height: 6px;
+    background-color: #595d6e;
+    border-radius: 50%;
+}
+
 
 
 
