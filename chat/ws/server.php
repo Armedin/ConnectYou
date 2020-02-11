@@ -627,6 +627,7 @@ while (true) {
 										$temp_token = bin2hex(openssl_random_pseudo_bytes(32));
 										$insert = mysqli_query($connection, "UPDATE `chat_room` SET `temp_token` = '$temp_token' WHERE `ID` = '$non_room' LIMIT 1");
 										if ($insert) {
+                      // !NOTE THIS IS ONLY FOR DEMO!!!
 											$url = url().'/action.php?act=delete-group-pic&usr_token='.$token.'&chat_token='.$temp_token.'&chat_id='.$room.'&user_id='.$user_id.'&user_name='.$user_name;
 											$curl = curl_init();
 											curl_setopt($curl, CURLOPT_URL, $url);
@@ -634,7 +635,7 @@ while (true) {
 											curl_setopt($curl, CURLOPT_HEADER, false);
 											$del = curl_exec($curl);
 											curl_close($curl);
-											if ($del == 1) {
+											//if ($del == 1) {
 												mysqli_query($connection, "DELETE FROM `chat_members` WHERE `chat_room` = '$non_room'");
 												mysqli_query($connection, "DELETE FROM `chat_room` WHERE `ID` = '$non_room'");
 												if (save_messages() == 1) {
@@ -652,22 +653,23 @@ while (true) {
 															)
 												);
 												send_message_to_user($respond_text, $user_id);
-											} else {
-												echo "Shared files could not be deleted.\n";
-												$response_text = mask(
-															json_encode(
-																	array(
-																		'userid' => $user_id,
-																		'token' => $token,
-																		'error_stat' => 1,
-																		'error' => 'Could not deleted.',
-																		'msg_exists' => $msg_exists,
-																		'userid' => $user_id,
-																	)
-															)
-													);
-												send_message($response_text, $non_room);
-											}
+										//	}
+                      // else {
+											// 	echo "Shared files could not be deleted.\n";
+											// 	$response_text = mask(
+											// 				json_encode(
+											// 						array(
+											// 							'userid' => $user_id,
+											// 							'token' => $token,
+											// 							'error_stat' => 1,
+											// 							'error' => 'Could not deleted.',
+											// 							'msg_exists' => $msg_exists,
+											// 							'userid' => $user_id,
+											// 						)
+											// 				)
+											// 		);
+											// 	send_message($response_text, $non_room);
+											// }
 										}
 									}
 								}

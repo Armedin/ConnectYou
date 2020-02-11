@@ -40,7 +40,7 @@ if(is_user_logged_in()){
     <div class="inner_wrapper">
       <div class="register_auth_login">
         <div class="logo">
-          <a href="#"><img src="dist/img/logos/logo152.png"></a>
+          <a href="/"><img src="dist/img/logos/logo152.png"></a>
         </div>
         <div class="login_register_box">
           <h1 class="title">Log in to ConnectYou</h1>

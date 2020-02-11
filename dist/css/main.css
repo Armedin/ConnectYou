@@ -937,7 +937,7 @@ body.our_team_page {
 }
 
 .our_team_members_container {
-	background: #6d579d;
+	background: #71a4c8;
 	color: #fff;
 }
 
@@ -1754,7 +1754,7 @@ body.our_team_page {
 	padding: 80px 0;
 	position: relative;
 	margin-top: 60px;
-	background:#85c4f3;
+	background:#71a4c8;
 }
 
 .game-intro-section .info>h1 {
@@ -1892,6 +1892,30 @@ body.our_team_page {
 	-ms-user-select: none;
 	user-select: none;
 }
+
+
+/***********************
+	ACTIVE CONNECT
+************************/
+.active-connect{
+	background:#fff;
+}
+.active-connect .info>h1{
+	color:#2b7fbd;
+}
+.active-connect  .info>h1:after{
+	border-color:#2b7fbd;
+}
+.active-connect .info>p{
+	color:#464a4c;
+}
+
+
+
+
+
+
+
 
 /***********************
 		CHAT PAGE
@@ -3411,7 +3435,7 @@ body.our_team_page {
 
 .home_section {
 	/* background-color: #6d589d; */
-	background-color:#85c4f3;
+	background-color:#71a4c8;
 	color: #fff;
 	display: block;
 	overflow: hidden;
@@ -3532,7 +3556,7 @@ body.our_team_page {
 
 .aimed_for_section {
 	width: 100%;
-	background: #4abaa4;
+	background: #a7bada;
 	color: #fff;
 }
 
@@ -3610,13 +3634,13 @@ body.our_team_page {
 
 .platform_exist_info_section {
 	/* background-color: #6d589d; */
-	background-color:#85c4f3;
+	background-color:#71a3c8;
 	color: #fff;
 	padding: 40px 15px 0;
 }
 
 .platform_exist_info_section>.container_inner {
-	background: #54aef1;
+	background: #618eaf;
 	padding: 25px;
 	padding-bottom: 50px;
 }

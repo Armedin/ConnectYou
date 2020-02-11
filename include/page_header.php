@@ -5,18 +5,20 @@
         <span>ConnectYou</span>
       </a>
       <ul class="header_links">
-        <li><a href="./index.php">Home</a></li>
-        <li><a href="./fun-connect.php">Games</a></li>
-        <li><a href="./chat/">Chat</a></li>
-        <li><a href="./our-team.php">Our Team</a></li>
+        <li><a href="./index.php">ConnectYou</a></li>
+        <li><a href="./fun-connect.php">GamesConnect</a></li>
+        <li><a href="./chat/">OnlineConnect</a></li>
+        <li><a href="./active-connect.php">ActiveConnect</a></li>
+        <li><a href="./our-team.php">ConnectUs</a></li>
         <li><a href="./login.php">Login / Register</a></li>
       </ul>
       <div class="dropdown_list">
         <ul>
-          <li><a href="./index.php">Home</a></li>
-          <li><a href="./fun-connect.php">Games</a></li>
-          <li><a href="./chat/">Chat</a></li>
-          <li><a href="./our-team.php">Our Team</a></li>
+          <li><a href="./index.php">ConnectYou</a></li>
+          <li><a href="./fun-connect.php">GamesConnect</a></li>
+          <li><a href="./chat/">OnlineConnect</a></li>
+          <li><a href="./active-connect.php">ActiveConnect</a></li>
+          <li><a href="./our-team.php">ConnectUs</a></li>
           <li><a href="./login.php">Login / Register</a></li>
         </ul>
       </div>
@@ -25,4 +27,3 @@
       </a>
     </div>
   </div>
-  

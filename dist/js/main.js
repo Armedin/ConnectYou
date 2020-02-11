@@ -180,7 +180,7 @@ function isValidEmailAddress( emailAddress ) {
 
         }
 
-        
+
 
       });
 
@@ -205,7 +205,7 @@ function isValidEmailAddress( emailAddress ) {
           nextStepForm.addClass("show");
 
         }
-        
+
       });
 
       $(".submit").on("click", function(){
