@@ -44,7 +44,7 @@
 <body class="landing_page">
 
   <?php include_once('include/page_header.php'); ?>
-  
+
   <!-- Page Sidebar -->
   <div class="page-sidebar">
     <div class="header-logo">
@@ -96,7 +96,7 @@
   <section class="connect_you_info_section">
     <h1 class="title">ConnectYou is a platform which connects like-minded people.</h1>
     <div class="button_container">
-      <button class="connect_me-btn">ConnectMe</button>
+      <button class="connect_me-btn" onclick="window.location.href='connect-you.php'">ConnectMe</button>
     </div>
   </section>
 

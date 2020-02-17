@@ -5,7 +5,7 @@
         <span>ConnectYou</span>
       </a>
       <ul class="header_links">
-        <li><a href="./index.php">ConnectYou</a></li>
+        <li><a href="./connect-you.php">ConnectYou</a></li>
         <li><a href="./fun-connect.php">GamesConnect</a></li>
         <li><a href="./chat/">OnlineConnect</a></li>
         <li><a href="./active-connect.php">ActiveConnect</a></li>
@@ -14,7 +14,7 @@
       </ul>
       <div class="dropdown_list">
         <ul>
-          <li><a href="./index.php">ConnectYou</a></li>
+          <li><a href="./connect-you.php">ConnectYou</a></li>
           <li><a href="./fun-connect.php">GamesConnect</a></li>
           <li><a href="./chat/">OnlineConnect</a></li>
           <li><a href="./active-connect.php">ActiveConnect</a></li>

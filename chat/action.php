@@ -106,7 +106,7 @@ if(!blockUsers()) {
 		} else {
 			$page = 1;
 		}
-		
+
 		$begin = ( $page * 10 ) - 10;
 		if (guests_on_user_list() == 1) {
 			$users_query = db_query("SELECT `username`, `ID` , `profile_pic` FROM `members` WHERE `online` = 1 && `ID` != '$user_id' LIMIT $begin, 10");
@@ -118,11 +118,11 @@ if(!blockUsers()) {
 
 		$total_users = mysqli_num_rows($total_query);
 		$total_page = ceil($total_users / 10);
-		
+
 		$users = "";
 		$pagi = "";
 		$stat = 1;
-		
+
 		$title = "Online Users: ".$total_users;
 
 		if ($total_users > 0) {
@@ -243,10 +243,10 @@ if(!blockUsers()) {
 		} else {
 			$users .= "<p>There isn't any online user.</p>";
 			$stat = 0;
-		} 
+		}
 		echo json_encode(
 					array(
-						"stat" => $stat, 
+						"stat" => $stat,
 						"users" => $users,
 						"pagination" => $pagi,
 						"title" => $title
@@ -271,7 +271,7 @@ if(!blockUsers()) {
 		$pagi = "";
 		$stat = 1;
 
-		
+
 		if (guests_on_user_list() == 1) {
 			$users_query = db_query("SELECT `username`, `ID` , `profile_pic` FROM `members` WHERE `activation` = 1 && `online` = 1 && `ID` != '$user_id' LIMIT $begin, 10");
 			$total_query = db_query("SELECT `username`, `ID` , `profile_pic` FROM `members` WHERE `activation` = 1 && `online` = 1 && `ID` != '$user_id'");
@@ -281,8 +281,8 @@ if(!blockUsers()) {
 		}
 		$total_users = mysqli_num_rows($total_query);
 		$total_page = ceil($total_users / 10);
-		
-	   
+
+
 		if ($total_users > 0) {
 			$users .= "<ul class='collection'>";
 			while ($users_row = mysqli_fetch_array($users_query)) {
@@ -400,10 +400,10 @@ if(!blockUsers()) {
 		} else {
 			$users .= "<p>There isn't any online user.</p>";
 			$stat = 0;
-		} 
+		}
 		echo json_encode(
 					array(
-						"stat" => $stat, 
+						"stat" => $stat,
 						"users" => $users,
 						"pagination" => $pagi,
 					)
@@ -433,7 +433,7 @@ if(!blockUsers()) {
 			$users = "";
 			$pagi = "";
 			$stat = 1;
-			
+
 			$users_query = db_query("SELECT `friend_id` FROM `chat_friends` WHERE `user_id` = '$user_id' LIMIT $begin, 10");
 			$total_query = db_query("SELECT `ID` FROM `chat_friends` WHERE `user_id` = '$user_id'");
 
@@ -564,10 +564,10 @@ if(!blockUsers()) {
 			} else {
 				$users .= "<p>You don't have any friends.</p>";
 				$stat = 0;
-			} 
+			}
 			echo json_encode(
 						array(
-							"stat" => $stat, 
+							"stat" => $stat,
 							"users" => $users,
 							"pagination" => $pagi,
 						)
@@ -591,7 +591,7 @@ if(!blockUsers()) {
 		$pagi = "";
 		$stat = 1;
 
-		
+
 		if (guests_on_user_list() == 1) {
 			$users_query = db_query("SELECT `username`, `ID` , `profile_pic` FROM `members` WHERE `activation` = 1 && `online` = 1 && `ID` != '$user_id' LIMIT $begin, 10");
 			$total_query = db_query("SELECT `username`, `ID` , `profile_pic` FROM `members` WHERE `activation` = 1 && `online` = 1 && `ID` != '$user_id'");
@@ -601,8 +601,8 @@ if(!blockUsers()) {
 		}
 		$total_users = mysqli_num_rows($total_query);
 		$total_page = ceil($total_users / 10);
-		
-	   
+
+
 		if ($total_users > 0) {
 			$users .= "<ul class='collection'>";
 			while ($users_row = mysqli_fetch_array($users_query)) {
@@ -720,10 +720,10 @@ if(!blockUsers()) {
 		} else {
 			$users .= "<p>There isn't any online user.</p>";
 			$stat = 0;
-		} 
+		}
 		echo json_encode(
 					array(
-						"stat" => $stat, 
+						"stat" => $stat,
 						"users" => $users,
 						"pagination" => $pagi,
 					)
@@ -773,7 +773,7 @@ if(!blockUsers()) {
 					$check2 = db_query("SELECT `ID` FROM `chat_members` WHERE `chat_room` = '$ID' && (`user_id` = '$target' || `user_id` = '$user_id')");
 
 					if (mysqli_num_rows($check2) > 1) {
-						// If yes, open the exist chat 
+						// If yes, open the exist chat
 
 						$stat = 0;
 						$crypted_chat_id = $row['id_hash'];
@@ -797,8 +797,13 @@ if(!blockUsers()) {
 					$ID = mysqli_insert_id(db_connect());
 					$crypted_chat_id = keymaker($ID);
 					db_query("UPDATE `chat_room` SET id_hash = '$crypted_chat_id', chat_name = '$username|$target_un' WHERE ID = $ID");
-					db_query("INSERT INTO `chat_members`(`chat_room`, `user_name`, `user_id`, `status`, `last_message_time`) VALUES ('$ID', '$username', '$user_id', 5, '$time')");
-					db_query("INSERT INTO `chat_members`(`chat_room`, `user_id`, `user_name`, `status`, `last_message_time`) VALUES ('$ID', '$target', '$target_un', 0, '$time')");
+					if(isset($_POST['method'])){
+						db_query("INSERT INTO `chat_members`(`chat_room`, `user_name`, `user_id`, `status`, `last_message_time`) VALUES ('$ID', '$username', '$user_id', 6, '$time')");
+						db_query("INSERT INTO `chat_members`(`chat_room`, `user_id`, `user_name`, `status`, `last_message_time`) VALUES ('$ID', '$target', '$target_un', 1, '$time')");
+					}else{
+						db_query("INSERT INTO `chat_members`(`chat_room`, `user_name`, `user_id`, `status`, `last_message_time`) VALUES ('$ID', '$username', '$user_id', 5, '$time')");
+						db_query("INSERT INTO `chat_members`(`chat_room`, `user_id`, `user_name`, `status`, `last_message_time`) VALUES ('$ID', '$target', '$target_un', 0, '$time')");
+					}
 
 					/* Update the Token */
 					$token = bin2hex(openssl_random_pseudo_bytes(32));
@@ -890,7 +895,7 @@ if(!blockUsers()) {
 					$salt = bin2hex(openssl_random_pseudo_bytes(512));
 					$hash = password_hash($salt, PASSWORD_DEFAULT);
 					$token = bin2hex(openssl_random_pseudo_bytes(32));
-					
+
 					db_query("UPDATE `members` SET `salt` = '$salt', `token` = '$token' WHERE `ID` = $user_id");
 
 					$userid = ($user_id + 412) * 137;    // Crypt User ID with some basic math operations
@@ -1097,7 +1102,7 @@ if(!blockUsers()) {
 						setcookie('key', $hash, $cookie_time, '/');    // Set the Cookie
 						setcookie('user_id', $userid, $cookie_time, '/');    // Set the Cookie
 						setcookie('login_token', md5(uniqid(mt_rand(), true)), $cookie_time, '/');
-						
+
 						if(user_activation() == 1) {
 							$mail = new PHPMailer;
 							$mail->isSMTP();
@@ -1699,7 +1704,7 @@ if(!blockUsers()) {
 				$query = db_query("SELECT `ID`, `username`, `profile_pic` FROM `members` WHERE `activation` = 1 && `username` LIKE '%$search%' && `username` != '$username' ORDER BY `username` ASC LIMIT $begin, 10");
 				$total_query = db_query("SELECT `ID`, `username`, `profile_pic` FROM `members` WHERE `activation` = 1 && `username` LIKE '%$search%' && `username` != '$username'");
 			}
-		   
+
 		} else {
 			if($admin == 1) {
 				$query = db_query("SELECT `ID`, `username`, `profile_pic` FROM `members` WHERE `activation` = 1 && `username` LIKE '%$search%' && `guest` = 0 ORDER BY `username` ASC LIMIT $begin, 10");
@@ -1983,7 +1988,7 @@ if(!blockUsers()) {
 		&& !empty($_POST['userid'])
 	) {
 		$name = db_escape($_POST['gn']);    // Group Name
-		$users = json_decode($_POST['array']); // Selected Users (Added Chips)		
+		$users = json_decode($_POST['array']); // Selected Users (Added Chips)
 		$time = time();    // Current Time
 		$token = db_escape($_POST['token']);        // User's Token
 		$user_id = db_escape($_POST['userid']);        // User ID
@@ -2111,20 +2116,20 @@ if(!blockUsers()) {
 		$user_list = chat_users($username, $chat_id, $roomtype);
 		$dropdown = "";
 		$online = -1;
-		
+
 		if ($token === getToken($user_id)) {
 			if (userName($user_id) == $username) {
 				$query = db_query("SELECT `user_id`, `user_name` FROM `chat_members` WHERE `chat_room` = '$chat_id' && `user_name` != '$username' && `status` != 4 && `status` != 0");
 				while ($row = mysqli_fetch_array($query)) {
 					array_push($user_chips, $row[0]);
-					array_push($user_chips2, $row[1]); 
+					array_push($user_chips2, $row[1]);
 				}
-				
+
 				if($roomtype == 1) {
 					$name_q = db_query("SELECT `user_id` FROM `chat_members` WHERE `user_id` != '$user_id' && `chat_room` = '$chat_id' LIMIT 1");
 					$name_r = mysqli_fetch_array($name_q);
 					$target_id = $name_r['user_id'];
-					
+
 					if(isOnline($target_id)) {
 						$online = 1;
 					} else {
@@ -2419,7 +2424,7 @@ if(!blockUsers()) {
 		} else {
 			$chat_id = db_escape(chat_id($_POST['chatid']));
 		}
-		
+
 		$username = db_escape($_POST['username']); // Username
 		$token = db_escape($_POST['token']); // User's Token
 		$user_id = db_escape($_POST['userid']); // User ID
@@ -2455,7 +2460,7 @@ if(!blockUsers()) {
 						array_push($pics, picture_destination().$pic);
 					} else {
 						array_push($pics, "");
-					}		
+					}
 					array_push($usernames, $un);
 					array_push($ids, $id);
 					if($online == 1) {
@@ -2463,7 +2468,7 @@ if(!blockUsers()) {
 					} else {
 						array_push($onlines, "<p id='online-status-all' attr-id='".$id."' class='red-text text-darken-2'>Offline</p>");
 					}
-					
+
 				}
 
 				echo json_encode(array('users' => $new_users, 'usernames' => $usernames, 'pics' => $pics, 'chat' => keymaker($chat_id), 'grp_name' => $grp_name, 'ids' => $ids, 'onlines' => $onlines));
@@ -2487,8 +2492,8 @@ if(!blockUsers()) {
 
 		header('Location: ../login.php');    // Redirect to main page
 		exit;
-		
-		
+
+
 	}
 
 	//////////////////////////
@@ -2583,7 +2588,7 @@ if(!blockUsers()) {
 		$token = db_escape($_POST['token']);        // User's Token
 		$username = db_escape($_POST['username']);
 		$user_id = db_escape($_POST['userid']);        // User ID
-	   
+
 		$prev = db_escape($_POST['previous']);    // Previous Image
 		$status = 0;
 		$error = '';
@@ -2599,7 +2604,7 @@ if(!blockUsers()) {
 				if(!file_exists(picture_net_destination())) {
 					mkdir(picture_net_destination(), 0777);
 				}
-				
+
 				$temporary = explode('.', $_FILES['file']['name']);
 				$file_extension = end($temporary);
 
@@ -2667,7 +2672,7 @@ if(!blockUsers()) {
 		$token = db_escape($_POST['token']);
 		$user_id = db_escape($_POST['userid']);
 		$username = db_escape($_POST['username']);
-		
+
 		if(isAdmin($user_id) && isset($_POST['non_chatid']) && !empty($_POST['non_chatid'])) {
 			$chat_id = db_escape($_POST['non_chatid']);
 		} elseif(isset($_POST['chatid']) && !empty($_POST['chatid'])) {
@@ -2678,7 +2683,7 @@ if(!blockUsers()) {
 
 		$result = db_query("SELECT `owner_id` FROM `chat_room` WHERE `ID` = '$chat_id' LIMIT 1");
 		$row = mysqli_fetch_assoc($result);
-		
+
 		if (getToken($user_id) == $token && $username == userName($user_id)) {
 
 			if ($row['owner_id'] == $user_id) {
@@ -2819,7 +2824,7 @@ if(!blockUsers()) {
 				$photo_exist = 1;
 				$photo = '';
 			}
-				
+
 			echo "<span class='card-title grey-text text-darken-4'><span class='settings-title'>".$title."</span><i class='material-icons right close-chat-settings clickable-icon'>close</i></span>";
 			echo "<div class='edit-chat'>";
 				if($photo_exist == 1) {
@@ -2829,7 +2834,7 @@ if(!blockUsers()) {
 					echo "<i id='group' class='z-depth-1 material-icons circle big-pp large grey lighten-2'>".$photo."</i>";
 					echo "<img id='group-img' class='z-depth-1 circle hide' width='175' height='175' src=''>";
 				}
-		
+
 			echo "</div>";
 			echo "<h5 class='center'>".$row['username']."</h5>";
 			if(enable_user_status() == 1) {
@@ -2915,7 +2920,7 @@ if(!blockUsers()) {
 				$photo_exist = 1;
 				$photo = '';
 			}
-			
+
 			echo "<span class='card-title grey-text text-darken-4'><span class='settings-title'>".$title."</span><i class='material-icons right close-chat-settings clickable-icon'>close</i></span>";
 			echo "<div class='edit-chat'>";
 				if($type == 0 && $edit_photo == 1) {
@@ -2936,7 +2941,7 @@ if(!blockUsers()) {
 					echo "<i id='group' class='z-depth-1 material-icons circle big-pp large grey lighten-2'>".$photo."</i>";
 					echo "<img id='group-img' class='z-depth-1 circle hide' width='175' height='175' src=''>";
 				}
-				
+
 			echo "</div>";
 			if($type == 0 && $edit_photo == 1) {
 				echo "<ul id='save-chat-ul'><li><a id='save-chat-photo' class='waves-effect waves-light btn'>Save</a><a id='discard-chat-photo' class='waves-effect waves-light btn'>Discard</a></li></ul>";
@@ -2969,9 +2974,9 @@ if(!blockUsers()) {
 					}else{
 						foreach($interests as $interest){
 							echo '<li class="interest">'.$interest.'</li>';
-						} 
+						}
 					}
-					
+
 				echo '</ul>';
 			}
 		}
@@ -3010,7 +3015,7 @@ if(!blockUsers()) {
 				$query = db_query("SELECT `temp_token` FROM `chat_room` WHERE `ID` = '$chat_id'");
 				$result = mysqli_fetch_assoc($query);
 				$temp_token = $result['temp_token'];
-				
+
 				if ($chat_token == $temp_token) {
 					$id = db_escape($_GET['chat_id']);
 					$dir = share_net_destination().'/'.$id.'/';
@@ -3481,7 +3486,7 @@ if(!blockUsers()) {
 		$targetPath = '';
 		$all_target = array();
 		$mimes = array();
-		
+
 		if (!file_exists(share_destination()."/../")) {
 			mkdir(share_destination()."/../", 0777);
 		}
@@ -3580,7 +3585,7 @@ if(!blockUsers()) {
 			$sql_username = $row[0];
 			$sql_admin = $row[1];
 			$sql_guest = $row[2];
-						
+
 			if ($sql_username === $username && $sql_admin == 1 && $sql_guest == 0) {
 				if(!file_exists(picture_net_destination())) {
 					mkdir(picture_net_destination(), 0777);
@@ -3656,7 +3661,7 @@ if(!blockUsers()) {
 			$sql_username = $row[0];
 			$sql_admin = $row[1];
 			$sql_guest = $row[2];
-						
+
 			if ($sql_username === $username && $sql_admin == 1 && $sql_guest == 0) {
 				$query = db_query("SELECT `profile_pic` FROM `members` WHERE `ID` = '$target_id' LIMIT 1");
 				$result = mysqli_fetch_assoc($query);
@@ -3726,7 +3731,7 @@ if(!blockUsers()) {
 			$sql_username = $row[0];
 			$sql_admin = $row[1];
 			$sql_guest = $row[2];
-						
+
 			if ($sql_username === $username && $sql_admin == 1 && $sql_guest == 0) {
 				if (empty($_POST['target_email'])) {
 					$error = 'Please enter Email address.';
@@ -3844,7 +3849,7 @@ if(!blockUsers()) {
 											} else {
 												$register = db_query("INSERT INTO `members` (`username`, `password`, `email`, `guest`, `admin`, `registration_date`, `profile_pic`) VALUES('$target_username', '$escaped_hash', '$target_email', 1, 0, '$time', '$img_name')");
 											}
-											
+
 											if ($register) {
 												$status = 1;
 												$userid = mysqli_insert_id(db_connect());
@@ -3878,7 +3883,7 @@ if(!blockUsers()) {
 					)
 				);
 	}
-	
+
 	///////////////////////////
 	// Activate User Account //
 	///////////////////////////
@@ -3974,7 +3979,7 @@ if(!blockUsers()) {
 									echo "</div>";
 									echo "<a class='btn' href='#' id='save-forgotten-password'>Update</a>";
 								echo "</div>";
-								
+
 							} else {
 								echo "<p>An error has occured.</p>";
 								echo "<p>Click <a href='".get_option("URL")."'>here</a> to return main page.</p>";
@@ -4080,7 +4085,7 @@ if(!blockUsers()) {
 					)
 				);
 	}
-	
+
 	////////////////////
 	// Reset Password //
 	////////////////////
@@ -4095,7 +4100,7 @@ if(!blockUsers()) {
 		$row = mysqli_fetch_array($query);
 		$user_id = $row[0];
 		$query2 = db_query("SELECT `activation_code`, `valid_time` FROM `chat_user_activation` WHERE `user_id` = '$user_id' && `type` = 'reset_password' LIMIT 1");
-		
+
 		$row2 = mysqli_fetch_array($query2);
 		if(mysqli_num_rows($query) > 0) {
 			$activation_code = bin2hex(openssl_random_pseudo_bytes(24));
@@ -4145,7 +4150,7 @@ if(!blockUsers()) {
 					)
 				);
 	}
-	
+
 	/////////////////////////////
 	// Save Forgotten Password //
 	/////////////////////////////
@@ -4186,7 +4191,7 @@ if(!blockUsers()) {
 					)
 				);
 	}
-	
+
 	/////////////////////
 	// Change Password //
 	/////////////////////

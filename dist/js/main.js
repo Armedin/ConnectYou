@@ -395,7 +395,7 @@ function(e){
                   Snackbar.showToast({def_text:response.error});
                 }else if(response.status == 1){
                   Snackbar.showToast({def_text:"Correct!"});
-                  window.location.href="/";
+                  window.location.href="./connect-you.php";
                 }else{
                   Snackbar.showToast({def_text:"An unknown error has occured"});
                 }

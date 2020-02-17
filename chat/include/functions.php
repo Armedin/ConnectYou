@@ -5,7 +5,7 @@ require_once __DIR__ . '/PHPMailer/PHPMailerAutoload.php';
 if(session_id() == '' || !isset($_SESSION)) {
     session_start();
 }
-	
+
 date_default_timezone_set(timezone());    // Set the timezone
 
 if (version_compare(PHP_VERSION, '5.5.0', '<')) {
@@ -882,6 +882,19 @@ function userName($user_id)
     return $row['username'];
 }
 
+//Only for displaying name and surname purposes!
+function first_lastName($username){
+  $query = db_query("SELECT `firstname`, `lastname` FROM `user_info` INNER JOIN `members` ON user_info.userID = members.ID WHERE members.username = '$username' LIMIT 1");
+  $row = mysqli_fetch_assoc($query);
+  //If empty then user hasn't entered his details, thus just display username
+  if(empty($row['firstname']) || is_null($row['firstname'])){
+    return $username;
+  }else{
+    return $row['firstname']." " .$row['lastname'];
+  }
+
+}
+
 function user_status($user_id)
 {
     $query = db_query("SELECT `user_status` FROM `members` WHERE `ID` = '$user_id' LIMIT 1");
@@ -930,7 +943,7 @@ function user_name()
 
         return $row['username'];
     }
-    
+
 }
 
 // User's Email Address
@@ -982,7 +995,7 @@ function isAdmin($user_id)
 	} else {
 		return false;
     }*/
-    // Only user with id 46 
+    // Only user with id 46
    if($user_id == 46){
        return true;
    }else{
@@ -1116,12 +1129,12 @@ function userInRoom($user_id, $room)
 	$user_id = db_escape($user_id);
 	$room = db_escape($room);
     $query = db_query("SELECT `ID` FROM `chat_members` WHERE `user_id` = '$user_id'
-															&& chat_room = '$room' 
+															&& chat_room = '$room'
 															&& (
 																status = 1
-																|| status = 2 
-																|| status = 3 
-																|| status = 5 
+																|| status = 2
+																|| status = 3
+																|| status = 5
 																|| status = 6
 															) LIMIT 1");
     if (mysqli_num_rows($query) == 1) {
@@ -1190,12 +1203,12 @@ function js_variables()
 	} else {
 		$ws_protocol = "ws://";
     }
-	
+
     if (isUserLoggedIn()) {
         $user_name = user_name();
         $userid = user_id();
         $token = getToken($userid);
-		
+
         echo '<script type="text/javascript">var username="'.$user_name.'",
 												userid="'.$userid.'",
 												max_capacity="'.max_group_capacity().'",
@@ -1290,43 +1303,43 @@ function check_config_values()
     max_user_photo_size();
 }
 
-function getBrowser() 
-{ 
-    $u_agent = $_SERVER['HTTP_USER_AGENT']; 
+function getBrowser()
+{
+    $u_agent = $_SERVER['HTTP_USER_AGENT'];
     $bname = 'Unknown';
     $version= "";
 
     // Next get the name of the useragent yes seperately and for good reason
-    if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) 
-    { 
-        $bname = 'Internet Explorer'; 
-        $ub = "MSIE"; 
-    } 
-    elseif(preg_match('/Firefox/i',$u_agent)) 
-    { 
-        $bname = 'Firefox'; 
-        $ub = "Firefox"; 
+    if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent))
+    {
+        $bname = 'Internet Explorer';
+        $ub = "MSIE";
     }
-    elseif(preg_match('/OPR/i',$u_agent)) 
-    { 
-        $bname = 'Opera'; 
-        $ub = "Opera"; 
-    } 
-    elseif(preg_match('/Chrome/i',$u_agent)) 
-    { 
-        $bname = 'Chrome'; 
-        $ub = "Chrome"; 
-    } 
-    elseif(preg_match('/Safari/i',$u_agent)) 
-    { 
-        $bname = 'Apple Safari'; 
-        $ub = "Safari"; 
-    } 
-    elseif(preg_match('/Netscape/i',$u_agent)) 
-    { 
-        $bname = 'Netscape'; 
-        $ub = "Netscape"; 
-    } 
+    elseif(preg_match('/Firefox/i',$u_agent))
+    {
+        $bname = 'Firefox';
+        $ub = "Firefox";
+    }
+    elseif(preg_match('/OPR/i',$u_agent))
+    {
+        $bname = 'Opera';
+        $ub = "Opera";
+    }
+    elseif(preg_match('/Chrome/i',$u_agent))
+    {
+        $bname = 'Chrome';
+        $ub = "Chrome";
+    }
+    elseif(preg_match('/Safari/i',$u_agent))
+    {
+        $bname = 'Apple Safari';
+        $ub = "Safari";
+    }
+    elseif(preg_match('/Netscape/i',$u_agent))
+    {
+        $bname = 'Netscape';
+        $ub = "Netscape";
+    }
 
     // finally get the correct version number
     $known = array('Version', $ub, 'other');
@@ -1359,7 +1372,7 @@ function getBrowser()
         'name'      => $bname,
         'version'   => $version
     );
-} 
+}
 
 function javascript_files()
 {
@@ -1471,4 +1484,20 @@ function isLocalhost() {
 	} else {
 		return false;
 	}
+}
+
+function is_user_info_registered(){
+    if(isset($_SESSION['user_id'])){
+        $user_id = $_SESSION['user_id'];
+        $query = db_query("SELECT * FROM `user_info` WHERE `userID` = '$user_id' LIMIT 1");
+        $result = mysqli_num_rows($query);
+        if($result > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+
 }

@@ -89,7 +89,7 @@ function chat($chat_get)
     * Some JS Variables
     *
     * Crypted Chat ID, Room Type
-    */  
+    */
     echo "<script language='javascript' type='text/javascript'>";
         echo "var chat='" . $chat_get . "';";
         echo "var rmtyp='" . $type . "';";
@@ -142,7 +142,7 @@ function loadMessages($chat_id, $user_id)
                 $message = stripslashes(ban_word(preg_replace_callback('/(\ alt=\')(.*?)(\')/', function ($matches) {
                     return $matches[1].str_replace('-', '&#x', $matches[2]).$matches[3];
                 }, $message_old)));
-				
+
 				if($row["type"] == "user_media_location") {
 					$message = json_decode(json_encode(unserialize($message)), true);
 				}
@@ -319,15 +319,16 @@ function rooms()
                     *
 					* E.g. You are user1 and other person is user2. Your chat title is user2 but the other person's title is user1.
 					*/
-					
+
                     if ($nrow['type'] == 1) {
                         $name = explode('|', $nrow['chat_name']);
 
                         if ($user_name == $name[0]) {
-                            $cname = $name[1];
+                            $cname = first_lastName($name[1]);
                         } else {
-                            $cname = $name[0];
+                            $cname = first_lastName($name[0]);
                         }
+
 
                         $img_query = db_query("SELECT `profile_pic` FROM `members` WHERE `username` = '$cname' LIMIT 1");
                         $img_result = mysqli_fetch_assoc($img_query);
@@ -392,7 +393,7 @@ function chat_users($username, $chat_id, $roomtype)
     if ($roomtype == 0) {
         // Chat Type -> 0 // 0 -> Group Conversation // 1 -> Personal Message
         $query = db_query("SELECT `user_id`, `user_name` FROM `chat_members` WHERE `chat_room` = '$chat_id' && (`status` = 1 || `status` = 2) ORDER BY `user_name` ASC");
-    } else {    
+    } else {
 	    // Type -> 1
         $query = db_query("SELECT `user_id`, `user_name` FROM `chat_members` WHERE `chat_room` = '$chat_id' ORDER BY `user_name` ASC");
     }
@@ -425,7 +426,7 @@ function chat_users($username, $chat_id, $roomtype)
 		} else {
 			$data .=  "<span class='title truncate'>".$chat_username.'</span>';
 		}
-		
+
 		if(user_id() == $chat_userid) {
 			$data .= "<p class='green-text text-darken-2'>Online</p>";
 		} else {
@@ -481,8 +482,8 @@ function sendMessageHTML()
         echo "<div class='send-msg-bg' style='left:30.5px!important' draggable='false'>Type a Message</div>";
         echo "<div spellcheck='true' style='margin-left:20px!important' contenteditable='true' id='send-msg' class='send-msg'></div>";
     }
-    
-    
+
+
 	if(voice_notes() == 1) {
 		echo "<a class='btn-floating btn waves-effect waves-light red hide' id='send-btn'><i class='material-icons send-btn clickable'>send</i></a>";
 		echo "<a class='btn-floating btn waves-effect waves-light red' id='voice-btn'><i class='material-icons voice-btn clickable'>mic</i></a>";
@@ -752,13 +753,13 @@ function search_user($stat = 1)
 			$type = 1;
 			break;
 	}
-	
+
 	if($type == 1) {
 		echo "<div class='new-msg hide'>";
 	} else {
 		echo "<div class='new-msg'>";
 	}
-    
+
     echo "<div class='row'>";
     echo "<div class='input-field'>";
     echo "<input id='search' type='text' class='search'>";
@@ -782,13 +783,13 @@ function search_user_to_add_friend($stat = 1)
 			$type = 1;
 			break;
 	}
-	
+
 	if($type == 1) {
 		echo "<div class='new-friend hide'>";
 	} else {
 		echo "<div class='new-friend'>";
 	}
-    
+
     echo "<div class='row'>";
     echo "<div class='input-field'>";
     echo "<input id='search_friend' type='text' class='search'>";
@@ -801,7 +802,7 @@ function search_user_to_add_friend($stat = 1)
 // Header Design
 function header_design()
 {
-	
+
     $user_id = db_escape(user_id()); // User ID
     $isGuest = isGuest($user_id);
     echo "<div class='z-depth-1 teal darken-1 card custom-nav'>";
@@ -831,7 +832,7 @@ function header_design()
     $pp_query = db_query("SELECT `profile_pic` FROM `members` WHERE `ID` = '$user_id' LIMIT 1");
     $pp_row = mysqli_fetch_assoc($pp_query);
     $pp = $pp_row['profile_pic'];
-	
+
     echo "<div class='nav-img valign-wrapper'>";
     if (empty($pp)) {
         echo "<i id='pp-main' class='valign material-icons circle medium pp grey lighten-2 z-depth-1 left'>person</i>";
@@ -887,7 +888,7 @@ function chat_application($type = "full_page")
 			break;
     }
     $user_id = user_id();
-    
+
     $query = db_query("SELECT `username`, `email`, `token` FROM `members` WHERE `ID` = '$user_id' LIMIT 1");
     $row = mysqli_fetch_array($query);
     $username = $row['username'];
@@ -1017,7 +1018,7 @@ function chat_application($type = "full_page")
 								echo "<a class='white-text left modal-action modal-close waves-effect waves-grey btn-flat'>Close</a>";
 							echo "</div>";
 						echo "</div>";
-						
+
 						if(share_video() == 1) {
 							echo "<div id='modal3' class='modal modal-fixed-footer grey lighten-3' style='text-align:center;'>";
 								echo "<div class='modal-content'>";
@@ -1055,7 +1056,7 @@ function chat_application($type = "full_page")
 							echo "<div class='row custom-row'>";
 								echo "<div class='custom-row-col col s12 full-height'>";
 									echo "<div class='card full-height'>";
-										
+
 										if($stat == 1) {
 											header_design();
 											echo "<div class='custom-cont'>";
@@ -1294,7 +1295,7 @@ function login_register_design()
     echo "<div class='card login-card z-depth-2' id='login-reveal'>";
         echo "<div class='card-content'>";
             echo "<div class='card-title text-darken-4'>Login</div>";
-            echo "<form method='post' action='./' name='loginform' autocomplete='off' enctype='multipart/form-data'>";									  
+            echo "<form method='post' action='./' name='loginform' autocomplete='off' enctype='multipart/form-data'>";
                 echo "<div class='row'>";
                     echo "<div class='input-field custom-input-field col s12'>";
                         echo "<input id='login_input_email' name='email' type='email' autocomplete='off' required/>";
@@ -1351,7 +1352,7 @@ function login_register_design()
 			echo "</form>";
         echo "</div>";
     echo "</div>";
-	
+
 	if(forgot_password() == 1) {
 		echo "<div id='password-reveal' class='card login-card z-depth-2'>";
 			echo "<div class='card-content'>";

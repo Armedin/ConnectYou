@@ -64,6 +64,14 @@ function getToken($user_id)
     return $row['token'];
 }
 
+function getUsername($user_id){
+  $user_id = db_escapeString($user_id);
+    $query = db_query("SELECT `username` FROM `members` WHERE `ID` = '$user_id' LIMIT 1");
+    $row = mysqli_fetch_assoc($query);
+
+    return $row['username'];
+}
+
 function is_user_logged_in(){
 	return isset($_SESSION['user_id']);
 }
@@ -81,7 +89,7 @@ function is_user_info_registered(){
     }else{
         return false;
     }
-    
+
 }
 
 
@@ -114,6 +122,20 @@ function max_username_length(){
 	return 55;
 }
 
+function user_interests($user_id){
+  $user_id = db_escapeString($user_id);
+  $sql = db_query("SELECT interests FROM user_info WHERE userID = '$user_id' LIMIT 1");
+
+  $interests = array();
+
+  if(mysqli_num_rows($sql)>0){
+    $row = mysqli_fetch_assoc($sql);
+    if(!empty($row['interests']) || !is_null($row['interests'])){
+      $interests = explode(',', $row['interests']);
+    }
+  }
+  return $interests;
+}
 
 
 
