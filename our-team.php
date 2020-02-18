@@ -106,9 +106,9 @@
               <h3>Alesya Yakimenko</h3>
               <p>Marketing Manager</p>
               <div class="member_quotes">
-                <p>For me, ConnectYou is a way to achieve the goal of establishing interconnectedness of students of different nationalities. In a modern society, we often encounter people’s inability to effectively communicate.
-                  Due to technological progress, people stop perceiving other people on a cognitive level and instead prefer to live in ‘online’ world, closing up and experiencing extreme loneliness. That is the reason why we
-                  created ConnectYou, which not only gives a new online world but also helps people be closer to each other.</p>
+                <p>Due to technological progress, people stop perceiving other people on a cognitive level and instead prefer to live in ‘online’ world, closing up and experiencing extreme loneliness.
+                  That is the reason why we created ConnectYou, which not only gives a new online world but also helps people be closer to each other.
+                </p>
               </div>
               <div class="social_media_cont">
                 <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
