@@ -4,8 +4,8 @@
 // Database Settings
 //////////////
 
-define('HOST', 'connectyou.database.windows.net'); // Database domain or IP number
-define('USER', 'Armedin'); // Database username
+define('HOST', 'connect-you.mysql.database.azure.com'); // Database domain or IP number
+define('USER', 'Armedin@connect-you'); // Database username
 define('PASSWORD', 'BrK!G6!2tkEfsQf'); // Database password
 define('DATABASE', 'connectyou'); // Database name
 

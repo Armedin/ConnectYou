@@ -21,8 +21,8 @@ function db_connect()
 {
     static $connection;
     if (!isset($connection)) {
-	  $serverName = "connectyou.database.windows.net";
-		$serverUsername = "Armedin";
+	  $serverName = "connect-you.mysql.database.azure.com";
+		$serverUsername = "Armedin@connect-you";
 		$serverPassword = "BrK!G6!2tkEfsQf";
 		$serverDatabase="connectyou";
 		$connection=mysqli_connect($serverName, $serverUsername, $serverPassword, $serverDatabase);
