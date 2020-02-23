@@ -21,9 +21,9 @@ function db_connect()
 {
     static $connection;
     if (!isset($connection)) {
-	  $serverName = "127.0.0.1";
-		$serverUsername = "root";
-		$serverPassword = "";
+	  $serverName = "connectyou.database.windows.net";
+		$serverUsername = "Armedin";
+		$serverPassword = "BrK!G6!2tkEfsQf";
 		$serverDatabase="connectyou";
 		$connection=mysqli_connect($serverName, $serverUsername, $serverPassword, $serverDatabase);
     }
