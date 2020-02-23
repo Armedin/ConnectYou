@@ -19,22 +19,16 @@ if (version_compare(PHP_VERSION, '5.5.0', '<')) {
 
 function db_connect()
 {
-    static $connection;
-    if (!isset($connection)) {
-	  $serverName = "connect-you.mysql.database.azure.com";
-		$serverUsername = "Armedin@connect-you";
-		$serverPassword = "BrK!G6!2tkEfsQf";
-		$serverDatabase="connect-you";
-		$connection=mysqli_connect($serverName, $serverUsername, $serverPassword, $serverDatabase);
-    }
+    $conn=mysqli_init();
+    mysqli_real_connect($conn, "connect-you.mysql.database.azure.com", "Armedin@connect-you", "BrK!G6!2tkEfsQf", "connect-you", 3306);
 
-    if ($connection === false) {
-        return mysqli_connect_error();
+    if (mysqli_connect_errno($conn)) {
+      return mysqli_connect_error();
     }else{
-      //return 'works';
-    }
 
-    return $connection;
+    }
+    
+    return $con;
 }
 
 function db_query($query)
