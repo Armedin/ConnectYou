@@ -101,7 +101,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == "login" && is_ajax()
 			$status = 0;
 		}
 
-    //if (!mysqli_connect_errno(db_connect())) {
+    if (!mysqli_connect_errno(db_connect())) {
 
       $username = db_escapeString($_POST['username']);
       $check_username = db_query("SELECT ID, username, password, email FROM members WHERE username = '$username' || email = '$username'");
@@ -127,10 +127,10 @@ elseif(isset($_GET['action']) && $_GET['action'] == "login" && is_ajax()
 				$status = 0;
       }
 
-    // }else{
-    //   $error = 'Database connection problem.';
-		// 	$status = 0;
-    // }
+    }else{
+      $error = 'Database connection problem.';
+			$status = 0;
+    }
 
     echo json_encode(
 				array(

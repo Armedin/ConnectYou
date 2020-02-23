@@ -22,12 +22,7 @@ function db_connect()
     $conn=mysqli_init();
     mysqli_real_connect($conn, "connect-you.mysql.database.azure.com", "Armedin@connect-you", "BrK!G6!2tkEfsQf", "connect-you", 3306);
 
-    if (mysqli_connect_errno($conn)) {
-      return mysqli_connect_error();
-    }else{
 
-    }
-    
     return $con;
 }
 
