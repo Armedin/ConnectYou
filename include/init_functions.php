@@ -23,10 +23,8 @@ function db_connect()
     mysqli_real_connect($conn, "connect-you.mysql.database.azure.com", "Armedin@connect-you", "BrK!G6!2tkEfsQf", "connectyou", 3306);
 
     if (mysqli_connect_errno($conn)) {
-      return mysqli_connect_error();
-    }else{
-
-    }
+      die('Failed to connect to MySQL: '.mysqli_connect_error());
+    s}
 
     return $con;
 }
