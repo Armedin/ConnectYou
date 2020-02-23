@@ -20,9 +20,12 @@ if (version_compare(PHP_VERSION, '5.5.0', '<')) {
 function db_connect()
 {
     $conn=mysqli_init();
-    mysqli_real_connect($conn, "connect-you.mysql.database.azure.com", "Armedin@connect-you", "BrK!G6!2tkEfsQf", "connect-you", 3306);
+    mysqli_real_connect($conn, "connect-you.mysql.database.azure.com", "Armedin@connect-you", "BrK!G6!2tkEfsQf", "connectyou", 3306);
+
     if (mysqli_connect_errno($conn)) {
-      die('Failed to connect to MySQL: '.mysqli_connect_error());
+      return mysqli_connect_error();
+    }else{
+
     }
 
     return $con;
