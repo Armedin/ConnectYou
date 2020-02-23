@@ -128,7 +128,7 @@ elseif(isset($_GET['action']) && $_GET['action'] == "login" && is_ajax()
       }
 
     }else{
-      $error = 'Database connection problem.';
+      $error = 'Database problem.';
 			$status = 0;
     }
 
