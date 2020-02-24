@@ -48,7 +48,7 @@
             $status = 0;
         }
 
-        if(!mysqli_errno(db_connect())){
+        //if(!mysqli_errno(db_connect())){
           $username = db_escapeString($_POST['username']);
           $user_email = db_escapeString($_POST['email']);
 
@@ -74,7 +74,10 @@
             $register_user = db_query("INSERT INTO members (username, password, email, registration_date)
             VALUES ('$username', '$escaped_hash', '$user_email', '$time')");
           }
-        }
+        // }else{
+        //   $error = 'Database connection problem';
+        //   $status = 0;
+        // }
 
     }
 
@@ -104,8 +107,8 @@ elseif(isset($_GET['action']) && $_GET['action'] == "login" && is_ajax()
 
 
       $username = db_escapeString($_POST['username']);
-      $check_username = db_query("SELECT ID, username, password, email FROM members WHERE username = '$username' || email = '$username'");
-
+      //$check_username = db_query("SELECT ID, username, password, email FROM members WHERE username = '$username' || email = '$username'");
+      $check_username = db_query("SELECT * FROM members LIMIT 1");
       if(mysqli_num_rows($check_username) == 1){
 
         $row = mysqli_fetch_assoc($check_username);
