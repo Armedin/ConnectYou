@@ -206,7 +206,7 @@
         };
 
         this.open = function (reconnectAttempt) {
-            ws = new WebSocket(self.url, protocols || []);
+            ws = new WebSocket('wss://connect-you.azurewebsites.net/');
             ws.binaryType = this.binaryType;
 
             if (reconnectAttempt) {
