@@ -786,7 +786,7 @@ function guests_on_user_list()
 
 function user_activation()
 {
-    return 1;
+    return 0;
 }
 
 function forgot_password()
