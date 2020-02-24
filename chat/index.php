@@ -3,9 +3,11 @@ require_once './include/chat.php';
 
 if(!isset($_SESSION['user_id'])){
 	header("Location: /login.php");
-}else if(!is_user_info_registered()){
-  header('Location: /collect-data.php');
 }
+/*Not working on Azure...
+else if(!is_user_info_registered()){
+  header('Location: /collect-data.php');
+}*/
 ?>
 
 <!DOCTYPE html>
