@@ -1,4 +1,11 @@
-
+<?php
+include_once('include/init_functions.php');
+if(!is_user_logged_in()){
+  header('Location: login.php');
+}else if(!is_user_info_registered()){
+  header('Location: collect-data.php');
+}
+?>
 <html>
 
 <head>
@@ -23,17 +30,6 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
   <link href="dist/fontawesome/releases/v5.11.2/css/all.css" rel="stylesheet">
 
-  <!-- FONTS
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Roboto" rel="stylesheet">
-	<link rel="stylesheet" id="redux-google-fonts-stm_option-css"
-		href="https://fonts.googleapis.com/css?family=Montserrat%3A200%2C500%2C600%2C400%2C700%7COpen+Sans%3A300%2C400%2C600%2C700%2C800%2C300italic%2C400italic%2C600italic%2C700italic%2C800italic&#038;subset=latin&#038;ver=1536658178"
-		 type="text/css" media="all" />
-	<link rel="stylesheet" id="redux-google-fonts-stm_option-css"
-		href="https://fonts.googleapis.com/css?family=Montserrat%3A200%2C500%2C600%2C400%2C700%7COpen+Sans%3A300%2C400%2C600%2C700%2C800%2C300italic%2C400italic%2C600italic%2C700italic%2C800italic&#038;subset=latin&#038;ver=1536658178"
-		 type="text/css" media="all" />
-  -->
 
   <title>ActiveConnect | ConnectYou</title>
 
@@ -42,7 +38,7 @@
 <body>
 
   <?php include_once('include/page_header.php'); ?>
-  
+
 
   <!-- Game Intro Section -->
   <section class="game-intro-section active-connect">
@@ -64,7 +60,7 @@
     </div>
   </section>
 
-  
+
   <section class="game-container-section">
     <div class="container_inner">
       <div class="info_header">
@@ -78,7 +74,7 @@
           </div>
           <div class="game-body-content">
             <h3 class="game-title">Outdoor Physical Activity</h3>
-            <button class="play-btn">Select</button>
+            <button class="play-btn select-btn" value="ce5a8fde1fcd379b864241aa0e057f95">Select</button>
           </div>
         </div>
 
@@ -88,7 +84,7 @@
           </div>
           <div class="game-body-content">
             <h3 class="game-title">Outdoor Non-physical Activity</h3>
-            <button class="play-btn">Select</button>
+            <button class="play-btn select-btn" value="6cfde6c7b53b304871dd717344acf95b">Select</button>
           </div>
         </div>
 
@@ -98,7 +94,7 @@
           </div>
           <div class="game-body-content">
             <h3 class="game-title">Indoor Physical Activity</h3>
-            <button class="play-btn">Select</button>
+            <button class="play-btn select-btn" value="c820883c7281b80f523876d473f76d00">Select</button>
           </div>
         </div>
 
@@ -108,7 +104,7 @@
           </div>
           <div class="game-body-content">
             <h3 class="game-title">Indoor Non-physical Activity</h3>
-            <button class="play-btn">Select</button>
+            <button class="play-btn select-btn" value="c31d371c07841da895aa81710be107f5">Select</button>
           </div>
         </div>
 
@@ -118,7 +114,7 @@
           </div>
           <div class="game-body-content">
             <h3 class="game-title">Night Activity without alcohol</h3>
-            <button class="play-btn">Select</button>
+            <button class="play-btn select-btn" value="89bab835e0a603282d90383b66f45064">Select</button>
           </div>
         </div>
 
@@ -128,7 +124,7 @@
           </div>
           <div class="game-body-content">
             <h3 class="game-title">Night Activity with alcohol</h3>
-            <button class="play-btn">Select</button>
+            <button class="play-btn select-btn" value="cbba9784b052e7d15e460c3e67c0b4a0">Select</button>
           </div>
         </div>
 
@@ -143,6 +139,42 @@
 
 <script src="dist/js/jquery.min.js"></script>
 <script src="dist/js/main.js"></script>
+
+<?php
+
+  if(is_user_logged_in()){
+    echo '<script>var user_id ="'.$_SESSION['user_id'].'", token = "'.getToken($_SESSION['user_id']).'", username = "'.getUsername($_SESSION['user_id']).'"</script>';
+  }
+
+  if(is_user_logged_in()){
+
+?>
+  <script>
+
+    $(".select-btn").on("click", function(){
+      var chat = $(this).val();
+      console.log(chat);
+      // $.post( "./action.php?act=invite-group", { chatid: chat, array: array_inv, token: token, username: username, userid: userid}).done( function( data ){
+
+      // });
+    });
+
+  </script>
+<?php
+  }else{
+
+?>
+  <script>
+    $(".select-btn").on("click", function(){
+      window.location.href="login.php";
+    });
+
+  </script>
+<?php
+  }
+?>
+
+
 </body>
 
 </html>

@@ -4,10 +4,10 @@
 // Database Settings
 //////////////
 
-define('HOST', 'connect-you.mysql.database.azure.com'); // Database domain or IP number
-define('USER', 'Armedin@connect-you'); // Database username
-define('PASSWORD', 'BrK!G6!2tkEfsQf'); // Database password
-define('DATABASE', 'connect-you'); // Database name
+define('HOST', '127.0.0.1'); // Database domain or IP number
+define('USER', 'root'); // Database username
+define('PASSWORD', ''); // Database password
+define('DATABASE', 'connectyou'); // Database name
 
 //////////////
 // EMail Settings

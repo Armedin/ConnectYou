@@ -86,7 +86,18 @@ if(!is_user_logged_in()){
     <h1 class="title">ConnectYou is a platform which connects like-minded people.</h1>
     <p class="connect_txt">If you wish to be connected with people who you share the same interests with, click ConnectMe button below</p>
     <div class="button_container">
-      <button class="connect_me-btn" id="connect-me">ConnectMe</button>
+
+      <?php
+
+      if(!is_user_logged_in()){
+        echo '<a href="./login.php" class="connect_me-btn">ConnectMe</a>';
+      }else if(!is_user_info_registered()){
+        echo '<a href="./login.php" class="connect_me-btn">ConnectMe</a>';
+      }else{
+        echo '<button class="connect_me-btn" id="connect-me">ConnectMe</button>';
+      }
+
+      ?>
     </div>
   </section>
 
@@ -94,7 +105,12 @@ if(!is_user_logged_in()){
 
 <script src="dist/js/jquery.min.js"></script>
 <script src="dist/js/main.js"></script>
-<?='<script>var user_id ="'.$_SESSION['user_id'].'", token = "'.getToken($_SESSION['user_id']).'", username = "'.getUsername($_SESSION['user_id']).'"</script>'?>
+<?php
+
+  if(is_user_logged_in()){
+    echo '<script>var user_id ="'.$_SESSION['user_id'].'", token = "'.getToken($_SESSION['user_id']).'", username = "'.getUsername($_SESSION['user_id']).'"</script>';
+  }
+  ?>
 <script>
   $("#connect-me").on("click", function(){
     $.ajax({

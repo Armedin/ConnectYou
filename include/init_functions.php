@@ -5,6 +5,20 @@ if(session_id() == '' || !isset($_SESSION)) {
     session_start();
 }
 
+//PHP Mailer
+include 'PHPMailer/PHPMailer.php';
+include 'PHPMailer/SMTP.php';
+include 'PHPMailer/Exception.php';
+
+define('EMAIL_HOST', 'connectyou.com'); 	// Email host address
+define('EMAIL_USERNAME', 'info@connectyou.com');	// Email user name
+define('EMAIL_PASSWORD', 'password');	// Email password
+define('EMAIL_SMTP_SECURE', 'TLS');	// TLS or SSL
+define('EMAIL_PORT', '587');	// Email port
+define('EMAIL_ADDRESS', 'info@connectyou.com');	// Email address
+define('EMAIL_NAME', 'ConnectYou');	// Email name
+
+
 
 //Check if php version is lower than 5.5.0 and dispaly error!
 if (version_compare(PHP_VERSION, '5.5.0', '<')) {
@@ -19,15 +33,23 @@ if (version_compare(PHP_VERSION, '5.5.0', '<')) {
 
 function db_connect()
 {
-
-    $conn=mysqli_init();
-    mysqli_real_connect($conn, "connect-you.mysql.database.azure.com", "Armedin@connect-you", "BrK!G6!2tkEfsQf", "connectyou", 3306);
-
-    if (mysqli_connect_errno($conn)) {
-      die('Failed to connect to MySQL: '.mysqli_connect_error());
+    static $connection;
+    if (!isset($connection)) {
+	  $serverName = "127.0.0.1";
+		$serverUsername = "root";
+		$serverPassword = "";
+		$serverDatabase="connectyou";
+		$connection=mysqli_connect($serverName, $serverUsername, $serverPassword, $serverDatabase);
     }
 
-    return $conn;
+    if ($connection === false) {
+        return mysqli_connect_error();
+    }else{
+      
+    }
+
+    return $connection;
+
 }
 
 function db_query($query)
@@ -92,6 +114,10 @@ function is_user_info_registered(){
 // For DEMO purpose
 function is_activation_required(){
     return false;
+}
+
+function send_email(){
+    return true;
 }
 
 //Whether the user has to activate its account

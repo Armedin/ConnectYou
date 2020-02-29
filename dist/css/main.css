@@ -3524,7 +3524,7 @@ body.our_team_page {
 	margin-top: 20px;
 }
 
-.connect_you_info_section button.connect_me-btn {
+.connect_you_info_section .connect_me-btn {
 	outline: 0;
 	cursor: pointer;
 	background-color: #feb452;
@@ -3591,11 +3591,16 @@ body.our_team_page {
 	text-align: center;
 	-webkit-flex: 0 0 40%;
 	flex: 0 0 40%;
+	display:flex;
+	display:-webkit-flexbox;
+	-webkit-align-items:center;
+	align-items:center;
+
 }
 
 .aimed_for_section .people_img_cont>img {
-	height: 100%;
-	width: auto;
+	width: 100%;
+	height:auto;
 	vertical-align: middle;
 	max-width: 650px;
 }
@@ -4198,7 +4203,7 @@ body.our_team_page {
 	}
 }
 
-@media(max-width:500px) {
+@media(max-width:1124px) {
 	.page_header .mobile_nav {
 		display: block;
 	}

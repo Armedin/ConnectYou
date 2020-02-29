@@ -1,4 +1,11 @@
-
+<?php
+include_once('include/init_functions.php');
+if(!is_user_logged_in()){
+  header('Location: login.php');
+}else if(!is_user_info_registered()){
+  header('Location: collect-data.php');
+}
+?>
 <html>
 
 <head>
@@ -42,7 +49,7 @@
 <body>
 
   <?php include_once('include/page_header.php'); ?>
-  
+
 
   <!-- Game Intro Section -->
   <section class="game-intro-section">
@@ -71,55 +78,43 @@
       </div>
       <div class="game-item-container">
 
-        <div class="single-game-item col-md-4">
+        <div class="single-game-item col-md-6">
           <div class="game-image">
-            <img src="dist/img/game1_bg.jpg">
+            <img src="dist/img/hangman_bg.png">
           </div>
           <div class="game-body-content">
-            <h3 class="game-title">Pixel Drawing</h3>
-            <div class="game-metadata">
-              <span class="game-status unavailable">
-                <i class="fad fa-lock-alt"></i> Coming Soon!
-              </span>
-            </div>
-            <p class="game-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <button class="play-btn">Play Game</button>
-          </div>
-        </div>
-
-        <div class="single-game-item col-md-4">
-          <div class="game-image">
-            <img src="dist/img/game2_bg.jpg">
-          </div>
-          <div class="game-body-content">
-            <h3 class="game-title">Pixel Drawing</h3>
+            <h3 class="game-title">Hangman Game</h3>
             <div class="game-metadata">
               <span class="game-status available">
                 <i class="fad fa-lock-open-alt"></i> Accessible
               </span>
             </div>
             <p class="game-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              This is a classic word game in which you must guess as many secret words as you can! But the
+              difference in our game is that two players choose a word from the list of categories and then play
+              against each other trying to guess the word! So you will know that you play against a real person not
+              a robot! In the end, you will be able to connect with the person you have been playing with and get to know each other better!
             </p>
             <button class="play-btn">Play Game</button>
           </div>
         </div>
 
-        <div class="single-game-item col-md-4">
+        <div class="single-game-item col-md-6">
           <div class="game-image">
-            <img src="dist/img/game3_bg.jpg">
+            <img src="dist/img/maze_bg.png">
           </div>
           <div class="game-body-content">
-            <h3 class="game-title">Pixel Drawing</h3>
+            <h3 class="game-title">Maze Game</h3>
             <div class="game-metadata">
-              <span class="game-status unavailable">
-                <i class="fad fa-lock-alt"></i> Coming Soon!
+              <span class="game-status available">
+                <i class="fad fa-lock-open-alt"></i> Accessible
               </span>
             </div>
             <p class="game-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              In this game, you will be able to compete with another real person for achieving the best result while being chased
+              by a MONSTER! Get ready to be quick in collecting coins and outracing your opponent! Here is a small hint for you:
+              maybe a collaborative play will be more useful for both of you to collect more coins and outsmart the monster? Connect
+              with your opponent after the game and discuss how well you have both done!
             </p>
             <button class="play-btn">Play Game</button>
           </div>

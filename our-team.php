@@ -1,4 +1,3 @@
-<!-- DOCTYPE html is the real devil. better not include! -->
 
 <html>
 
@@ -139,7 +138,7 @@
             </div>
             <div class="info">
               <h3>Philip Bardy</h3>
-              <p>Computer Scientist</p>
+              <p>Game Developer</p>
               <div class="social_media_cont">
                 <a class="social_widget facebook"href="www.facebook.com"><i class="fab fa-facebook-f"></i></a>
                 <a class="social_widget twitter"href="www.twitter.com"><i class="fab fa-twitter"></i></a>
